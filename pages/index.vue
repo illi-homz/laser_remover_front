@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <NavBar class="navbar container" />
+        <NavBar class="container" />
         <Header />
     </div>
 </template>

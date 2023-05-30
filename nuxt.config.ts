@@ -11,13 +11,13 @@ export default defineNuxtConfig({
     app: {
         head: {
             meta: [
-                {name: 'description', content: 'any description'},
-                {name: 'keywords', content: 'nuxt vue'},
+                { name: "description", content: "any description" },
+                { name: "keywords", content: "nuxt vue" },
             ],
             title: "Hello new project",
         },
     },
-    modules: ["nuxt-swiper", "nuxt-graphql-client"],
+    modules: ["nuxt-swiper", "nuxt-graphql-client", "nuxt-icons"],
     swiper: {},
     imports: {
         dirs: [],

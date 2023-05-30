@@ -1,0 +1,39 @@
+.btn {
+    padding: 0 16px;
+    color: $blackDark !important;
+    background-color: $white;
+    font-size: 16px;
+    line-height: 56px;
+    font-weight: 700;
+    transition: all .2s ease;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 2px;
+    font-family: sans-serif;
+
+    &:hover {
+        background-color: $black;
+        color: white;
+    }
+
+    &--outlined {
+        background-color: transparent;
+        border: 1px solid $black;
+
+        &:hover {
+            background-color: $accent;
+            color: white;
+        }
+    }
+
+    &--medium {
+        line-height: 40px;
+    }
+
+    &--disabled {
+        background-color: $grayMedium;
+        border-color: $grayMedium;
+        color: white;
+        pointer-events: none;
+    }
+}

@@ -3,6 +3,9 @@
 @import "styles/variables.scss";
 @import "styles/mixins.scss";
 
+// global component styles
+@import "styles/btn.scss";
+
 * {
     font-size: 14px;
     line-height: 16px;
@@ -36,4 +39,11 @@ body {
 
 .row {
 	display: flex;
+}
+
+.dot {
+	background-color: $white;
+	height: 8px;
+	width: 8px;
+	border-radius: 50%;
 }
