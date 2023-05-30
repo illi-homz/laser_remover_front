@@ -1,0 +1,15 @@
+$lg: 1440;
+$xl: 1180;
+$md: 992.98;
+$sm: 767.98;
+$xs: 479.98;
+
+$widescreen: 'min-width:' + $lg + px;
+$desktop: 'min-width:' + $xl + px;
+$tablet: 'min-width:' + $sm + px;
+$mobile: 'min-width:' + $md + px;
+
+$white: white;
+$textColor: #243138;
+$yellow: #FEC71A;
+$background: #040404;
