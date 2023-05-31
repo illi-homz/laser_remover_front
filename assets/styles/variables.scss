@@ -1,13 +1,14 @@
-$lg: 1440;
-$xl: 1180;
+$lg: 1439.98;
+$xl: 1179.98;
 $md: 992.98;
 $sm: 767.98;
 $xs: 479.98;
 
 $widescreen: 'min-width:' + $lg + px;
-$desktop: 'min-width:' + $xl + px;
+$fullscreen: 'min-width:' + $xl + px;
+$desktop: 'min-width:' + $md + px;
 $tablet: 'min-width:' + $sm + px;
-$mobile: 'min-width:' + $md + px;
+$mobile: 'min-width:' + $xs + px;
 
 $white: white;
 $blackDark: #101111;

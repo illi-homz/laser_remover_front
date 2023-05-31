@@ -5,7 +5,7 @@
     font-size: 16px;
     line-height: 56px;
     font-weight: 700;
-    transition: all .2s ease;
+    transition: all .05s ease;
     cursor: pointer;
     user-select: none;
     border-radius: 2px;
@@ -13,7 +13,7 @@
 
     &:hover {
         background-color: $black;
-        color: white;
+        color: white !important;
     }
 
     &--outlined {
@@ -22,7 +22,7 @@
 
         &:hover {
             background-color: $accent;
-            color: white;
+            color: white !important;
         }
     }
 
@@ -33,7 +33,7 @@
     &--disabled {
         background-color: $grayMedium;
         border-color: $grayMedium;
-        color: white;
+        color: white !important;
         pointer-events: none;
     }
 }

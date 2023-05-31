@@ -16,6 +16,12 @@
     }
 }
 
+@mixin fullscreen {
+    @media ($fullscreen) {
+        @content;
+    }
+}
+
 @mixin widescreen {
     @media ($widescreen) {
         @content;

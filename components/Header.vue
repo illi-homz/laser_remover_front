@@ -12,64 +12,96 @@
                     Бесплатная консультация
                 </div>
             </div>
-            <img src="@/assets/img/avatar.png" class="header__avatar" />
+            <img src="@/assets/img/avatar.webp" class="header__avatar" />
         </div>
     </div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss">
 .header {
-    height: 1px;
-    min-height: 100vh;
-    background: linear-gradient(99.51deg, #23252c 18.79%, #000000 100%);
+    display: flex;
+    flex-direction: column;
 
     &__container {
+        flex: 1;
         display: flex;
-        align-items: center;
-        height: 100%;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        @include desktop {
+            width: 100%;
+            justify-content: center;
+        }
     }
 
     &__content {
         position: relative;
-        width: 100%;
-    }
 
-    &__info {
-        position: absolute;
-        left: 0;
-        bottom: -34px;
-        display: flex;
-        align-items: center;
-        color: $white;
-        font-family: sans-serif;
-        font-size: 16px;
-        line-height: 18px;
-        font-weight: 700;
-        transform: translateY(100%);
-
-        .dot {
-            margin: 0 12px;
+        @include desktop {
+            width: 100%;
         }
     }
 
     &__caption {
         font-family: serif;
         color: $white;
-        font-size: 68px;
-        line-height: 69px;
+        font-size: 38px;
+        line-height: 46px;
         font-weight: 700;
         text-transform: uppercase;
+        margin-bottom: 30px;
+
+        @include desktop {
+            margin-bottom: unset;
+            font-size: 68px;
+            line-height: 69px;
+        }
+    }
+
+    &__info {
+        color: $white;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 18px;
+        font-weight: 700;
+
+        @include tablet {
+            display: flex;
+            align-items: center;
+        }
+
+        @include desktop {
+            position: absolute;
+            left: 0;
+            bottom: -34px;
+            transform: translateY(100%);
+        }
+
+        .dot {
+            margin: 12px 0;
+
+            @include desktop {
+                margin: 0 12px;
+            }
+        }
     }
 
     &__avatar {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        height: 80%;
-        max-height: 750px;
+        max-width: 100%;
+
+        @include tablet {
+        }
+
+        @include desktop {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            height: 80%;
+            max-height: 750px;
+        }
     }
 }
 </style>

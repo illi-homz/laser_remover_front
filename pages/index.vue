@@ -1,7 +1,9 @@
 <template>
     <div class="main">
-        <NavBar class="container" />
-        <Header />
+        <div class="main__header-wrapper">
+            <NavBar class="container" />
+            <Header />
+        </div>
     </div>
 </template>
 
@@ -18,13 +20,33 @@
 .main {
     position: relative;
     min-height: 200vh;
-    
+
+    &__header-wrapper {
+        display: flex;
+        flex-direction: column;
+        // height: 1px;
+        min-height: 100vh;
+        background: linear-gradient(99.51deg, #23252c 18.79%, #000000 100%);
+
+        // @include desktop {
+        //     display: block;
+        // }
+    }
+
     .navbar {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
         width: 100%;
+
+        @include desktop {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+        }
+    }
+
+    .header {
+        flex: 1;
     }
 }
 </style>

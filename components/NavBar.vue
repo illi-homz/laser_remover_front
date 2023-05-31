@@ -71,6 +71,26 @@ const showSignUpPopup = () => {
     }
 
     &__link {
+        position: relative;
+
+        &::before {
+            content: '';
+            display: none;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            transform: translateY(4px);
+            background-color: $white;
+        }
+
+        &:hover {
+            &::before {
+                display: block;
+            }
+        }
+        
         a {
             font-family: sans-serif;
             color: $white;
