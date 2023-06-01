@@ -1,12 +1,12 @@
 <template>
     <div class="navbar">
         <nuxt-link to="#" class="navbar__logo-link">
-            <nuxt-icon name="logo" class="navbar__logo" />
+            <nuxt-icon name="logo" class="navbar__logo" filled />
         </nuxt-link>
 
         <ul class="navbar__links">
-            <li v-for="{ id, title } in links" :key="id" class="navbar__link">
-                <nuxt-link to="#">{{ title }}</nuxt-link>
+            <li v-for="{ id, title, url } in links" :key="id" class="navbar__link">
+                <nuxt-link :to="url">{{ title }}</nuxt-link>
             </li>
         </ul>
 
@@ -20,11 +20,11 @@
 
 <script setup lang="ts">
 const links = [
-    { id: 0, title: "Обо мне", url: "aboutme" },
-    { id: 1, title: "Галерея", url: "gallery" },
-    { id: 2, title: "Отзывы", url: "feedbacks" },
-    { id: 3, title: "Частые вопросы", url: "questions" },
-    { id: 4, title: "Контакты", url: "contacts" },
+    { id: 0, title: "Обо мне", url: "#aboutme" },
+    { id: 1, title: "Галерея", url: "#gallery" },
+    { id: 2, title: "Отзывы", url: "#feedbacks" },
+    { id: 3, title: "Частые вопросы", url: "#questions" },
+    { id: 4, title: "Контакты", url: "#contacts" },
 ];
 
 const showSignUpPopup = () => {
@@ -40,6 +40,10 @@ const showSignUpPopup = () => {
     padding-top: 16px;
     padding-bottom: 16px;
 	z-index: 100 !important;
+    
+    @include tablet {
+        background: linear-gradient(98.79deg, #23252C 30.69%, #000000 100%);
+    }
 
     &__logo.nuxt-icon {
         svg {
@@ -61,6 +65,7 @@ const showSignUpPopup = () => {
     &__links {
         display: none;
         flex-wrap: wrap;
+        justify-content: flex-end;
         row-gap: 8px;
         column-gap: 30px;
         margin-left: 32px;
@@ -110,6 +115,10 @@ const showSignUpPopup = () => {
         }
 
         @include desktop {
+            margin-left: 50px;
+        }
+
+        @include fullscreen {
             margin-left: 70px;
         }
     }

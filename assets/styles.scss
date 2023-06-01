@@ -10,40 +10,50 @@
     font-size: 14px;
     line-height: 16px;
     font-weight: 400;
-	color: $textColor;
+    color: $textColor;
 }
 
 body {
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 
-	&.lock {
-		overflow: hidden !important;
-	}
+    &.lock {
+        overflow: hidden !important;
+    }
 }
 
 .container {
     max-width: $lg + px;
-	margin: 0 auto;
-	padding-left: 24px;
-	padding-right: 24px;
-	position: relative;
-	z-index: 1;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    position: relative;
+    z-index: 1;
 
-	@include desktop {
-		padding-left: 130px;
-		padding-right: 130px;
-	}
+    @include desktop {
+        padding-left: 130px;
+        padding-right: 130px;
+    }
 }
 
 .row {
-	display: flex;
+    display: flex;
 }
 
 .dot {
-	background-color: $white;
-	height: 8px;
-	width: 8px;
-	border-radius: 50%;
+    background-color: $white;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+}
+
+.block-title {
+    font-family: "Palatino", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 47px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: $white;
 }

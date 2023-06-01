@@ -4,6 +4,8 @@
             <NavBar class="container" />
             <Header />
         </div>
+        <AboutMe class="container" />
+        <Gallery />
     </div>
 </template>
 
@@ -19,22 +21,21 @@
 <style lang="scss">
 .main {
     position: relative;
-    min-height: 200vh;
 
     &__header-wrapper {
         display: flex;
         flex-direction: column;
-        // height: 1px;
         min-height: 100vh;
         background: linear-gradient(99.51deg, #23252c 18.79%, #000000 100%);
-
-        // @include desktop {
-        //     display: block;
-        // }
     }
 
     .navbar {
         width: 100%;
+        margin-bottom: 45px;
+
+        @include tablet {
+            margin-bottom: 45px;
+        }
 
         @include desktop {
             position: absolute;

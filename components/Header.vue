@@ -3,7 +3,7 @@
         <!-- header - hello man -->
         <div class="container header__container">
             <div class="header__content">
-                <div class="header__caption">удаление<br />татуировок<br />и татуажа</div>
+                <h1 class="header__caption">удаление<br />татуировок<br />и татуажа</h1>
                 <div class="header__info">
                     Без ожогов и шрамов
                     <div class="dot" />

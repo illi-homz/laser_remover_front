@@ -4,7 +4,6 @@ export default defineNuxtConfig({
         apiSecret: "123",
         apiUrl: "",
         public: {
-            // GQL_HOST: 'http://localhost:8000/api/graphql',
             apiBase: "/api",
         },
     },
@@ -22,6 +21,7 @@ export default defineNuxtConfig({
     imports: {
         dirs: [],
     },
+    ssr: true,
     typescript: {
         strict: true,
     },
@@ -33,5 +33,10 @@ export default defineNuxtConfig({
                 },
             },
         },
+        // server: {
+        //     proxy: {
+        //         "/mediafiles": "http://127.0.0.1:8000",
+        //     },
+        // },
     },
 });
