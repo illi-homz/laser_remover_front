@@ -1,15 +1,13 @@
 <template>
-    <div class="filter-btns-list">
-        <ul class="filter-btns-list__list">
-            <li
-                v-for="{ id, title, value } in props.items"
-                :key="id"
-                @click="onItemClick(value)"
-                class="filter-btns-list__item btn btn--outlined">
-                {{ title }}
-            </li>
-        </ul>
-    </div>
+    <ul class="filter-btns-list">
+        <li
+            v-for="{ id, title, value } in props.items"
+            :key="id"
+            @click="onItemClick(value)"
+            class="filter-btns-list__item btn btn--outlined">
+            {{ title }}
+        </li>
+    </ul>
 </template>
 
 <script setup lang="ts">
@@ -28,10 +26,8 @@ const onItemClick = (value: string) => emit("onItemClick", value);
 
 <style lang="scss">
 .filter-btns-list {
-    &__list {
-        display: flex;
-        column-gap: 24px;
-    }
+    display: flex;
+    column-gap: 24px;
 
     & &__item {
         font-family: "Mont", sans-serif;

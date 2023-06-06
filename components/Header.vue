@@ -45,7 +45,7 @@
     }
 
     &__caption {
-        font-family: serif;
+        font-family: $palladio;
         color: $white;
         font-size: 38px;
         line-height: 46px;
@@ -62,7 +62,7 @@
 
     &__info {
         color: $white;
-        font-family: sans-serif;
+        font-family: $mont;
         font-size: 16px;
         line-height: 18px;
         font-weight: 700;

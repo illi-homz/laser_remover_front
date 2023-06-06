@@ -1,4 +1,5 @@
 @import "styles/null.scss";
+@import "styles/fonts.scss";
 @import "styles/tipografy.scss";
 @import "styles/variables.scss";
 @import "styles/mixins.scss";
@@ -49,11 +50,17 @@ body {
 }
 
 .block-title {
-    font-family: "Palatino", sans-serif;
+    font-family: $palladio;
     font-style: normal;
     font-weight: 400;
     font-size: 47px;
     line-height: 120%;
     text-transform: uppercase;
     color: $white;
+}
+
+.no-scrollbar {
+	-ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    &::-webkit-scrollbar {display: none !important;};
 }

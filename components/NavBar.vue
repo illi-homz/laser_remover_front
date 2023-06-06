@@ -97,7 +97,7 @@ const showSignUpPopup = () => {
         }
         
         a {
-            font-family: sans-serif;
+            font-family: $mont;
             color: $white;
             text-transform: uppercase;
             font-size: 18px;
