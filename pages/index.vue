@@ -5,7 +5,8 @@
             <Header />
         </div>
         <AboutMe class="container" />
-        <Gallery />
+        <GalleryWorks class="main__gallery-works" />
+        <GalleryClients />
     </div>
 </template>
 

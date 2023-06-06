@@ -1,14 +1,13 @@
 <template>
     <div class="pagination">
-        <div class="pagination__btn-wrap" @click="onBack">
-            <nuxt-icon name="chevronBack" class="pagination__btn" filled :class="{ disable: isDisabled }" />
+        <div class="pagination__btn-wrap" @click="toBackward">
+            <nuxt-icon name="chevronBack" class="pagination__btn" filled :class="{ disable: isFirst }" />
         </div>
 
-        <!-- <div class="pagination__text">{{ props.current }} / {{ total }}</div> -->
-        <div class="pagination__text">{{ props.current }} / {{ total }}</div>
+        <div class="pagination__text">{{ props.current }} / {{ props.total }}</div>
 
-        <div class="pagination__btn-wrap" @click="onForward">
-            <nuxt-icon name="chevronForward" class="pagination__btn" filled />
+        <div class="pagination__btn-wrap" @click="toForward">
+            <nuxt-icon name="chevronForward" class="pagination__btn" filled :class="{ disable: isLast }" />
         </div>
     </div>
 </template>
@@ -21,17 +20,11 @@ const props = defineProps<{
 }>();
 const emit = defineEmits(["onBack", "onForward"]);
 
-const total = props.total;
-const isInfinity = props.isInfinity || false;
-const isDisabled = computed(() => props.current === 1 && !isInfinity)
-const isTotal = computed(() => props.current === props.total && !isInfinity)
+const isFirst = computed(() => props.current === 1 && !props.isInfinity);
+const isLast = computed(() => props.current === props.total && !props.isInfinity);
 
-const onBack = () => {
-    !isDisabled.value && emit("onBack")
-};
-const onForward = () => {
-    !isTotal.value && emit("onForward")
-};
+const toBackward = () => !isFirst.value && emit("onBack");
+const toForward = () => !isLast.value && emit("onForward");
 </script>
 
 <style lang="scss">

@@ -2,7 +2,7 @@
     <div class="filter-btns-list">
         <ul class="filter-btns-list__list">
             <li
-                v-for="{ id, title, value } in filters"
+                v-for="{ id, title, value } in props.items"
                 :key="id"
                 @click="onItemClick(value)"
                 class="filter-btns-list__item btn btn--outlined">
@@ -18,15 +18,12 @@ import { FilterBtnsItemType } from "~/types";
 const props = defineProps<{
     items?: FilterBtnsItemType[];
 }>();
+
 const emit = defineEmits<{
     (e: "onItemClick", value: string): void;
 }>();
 
-const filters = props.items || [];
-
-const onItemClick = (value: string) => {
-    emit("onItemClick", value);
-};
+const onItemClick = (value: string) => emit("onItemClick", value);
 </script>
 
 <style lang="scss">
@@ -42,12 +39,7 @@ const onItemClick = (value: string) => {
         font-size: 16px;
         line-height: 40px;
         color: $white;
-
-        // display: flex;
-        // align-items: center;
-        // padding: 0px 16px;
         border: 2px solid $white;
-        // border-radius: 2px;
     }
 }
 </style>
