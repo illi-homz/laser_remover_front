@@ -5,22 +5,25 @@
                 <div class="block-title gallery__block-title">{{ props.title || "gallery" }}</div>
                 <slot name="filters" />
                 <Pagination
-                    :current="activeIndex"
-                    :total="snapGrid"
+                    :current="activeSlideIndex"
+                    :total="slidesCount"
                     class="gallery__pagination-top"
                     @on-back="onBackClick"
                     @on-forward="onForwardClick" />
             </div>
             <Swiper
-                @swiper="(data) => onSwiper(data)"
                 :slides-per-view="props.slidesPerView"
                 :space-between="props.spaceBetween"
-                class="gallery__swiper">
+                :breakpoints="breakpoints"
+                class="gallery__swiper"
+                @init="onInit"
+                @activeIndexChange="onActiveIndexChange"
+                @beforeResize="beforeSwiperResize">
                 <slot name="slides" />
             </Swiper>
             <Pagination
-                :current="activeIndex"
-                :total="snapGrid"
+                :current="activeSlideIndex"
+                :total="slidesCount"
                 class="gallery__pagination-bottom"
                 @on-back="onBackClick"
                 @on-forward="onForwardClick" />
@@ -29,25 +32,31 @@
 </template>
 
 <script setup lang="ts">
-const swiper = ref();
+import { Swiper as SwiperType } from "swiper";
 
 const props = defineProps<{
     title?: string;
     slidesPerView?: number;
     spaceBetween?: number;
+    breakpoints?: any;
 }>();
 
-const onSwiper = (data: any) => {
-    swiper.value = data;
-};
-const activeIndex = computed(() => swiper.value?.activeIndex + 1);
-const snapGrid = computed(() => swiper.value?.snapGrid?.length || 0);
+const swiper = ref();
+const slidesCount = ref(0);
+const activeSlideIndex = ref(1);
 
-const onBackClick = () => swiper.value.slidePrev(300);
-const onForwardClick = () => {
-    swiper.value.slideNext(300);
-    console.log("swiper.value", swiper.value);
+const onActiveIndexChange = ({ snapIndex }: SwiperType) => {
+    activeSlideIndex.value = snapIndex + 1;
 };
+const beforeSwiperResize = ({ snapGrid }: SwiperType) => {
+    slidesCount.value = snapGrid.length;
+};
+const onInit = (data: SwiperType) => {
+    swiper.value = data;
+    slidesCount.value = data.snapGrid.length;
+};
+const onBackClick = () => swiper.value.slidePrev(300);
+const onForwardClick = () => swiper.value.slideNext(300);
 </script>
 
 <style lang="scss">
@@ -106,7 +115,7 @@ const onForwardClick = () => {
 
     &__pagination-bottom {
         margin-top: 32px;
-        
+
         @include tablet {
             display: none;
         }

@@ -1,6 +1,19 @@
 <template>
     <div class="gallery-works">
-        <Gallery :slides-per-view="3" :space-between="20">
+        <Gallery
+            :slides-per-view="1"
+            :space-between="10"
+            :breakpoints="{
+                560: {
+                    slidesPerView: 2,
+                    slidesPerGroup: 2,
+                },
+                992: {
+                    slidesPerView: 3,
+                    slidesPerGroup: 3,
+                    spaceBetween: 20,
+                },
+            }">
             <template v-slot:filters>
                 <FilterBtnsList
                     :items="filters"

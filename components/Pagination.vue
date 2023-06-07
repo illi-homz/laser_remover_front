@@ -53,6 +53,7 @@ const toForward = () => !isLast.value && emit("onForward");
         color: $white;
         margin: 0 28px;
         user-select: none;
+        white-space: nowrap;
     }
 }
 </style>
