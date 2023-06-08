@@ -43,8 +43,12 @@ const convertToLicalDateString = (date: Date) => {
         .trim();
 };
 
-const maxBlockHeight = 115;
+const textLineHeight = 23;
+const textLineHeightPx = textLineHeight + 'px';
+
 onNuxtReady(() => {
+    const linesMaxCount = 5;
+    const maxBlockHeight = textLineHeight * linesMaxCount;
     const textBlockHeight = textRef.value?.offsetHeight || 0;
 
     if (textBlockHeight > maxBlockHeight) {
@@ -68,7 +72,7 @@ onNuxtReady(() => {
         font-family: $mont;
         font-weight: 600;
         font-size: 16px;
-        line-height: 23px;
+        line-height: v-bind('textLineHeightPx');
         margin-bottom: 4px;
 
         &.hide {
