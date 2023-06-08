@@ -27,3 +27,11 @@
         @content;
     }
 }
+
+@mixin elipsize ($count) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $count;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -6,7 +6,7 @@
         </div>
         <AboutMe class="container" />
         <GalleryWorks class="main__gallery-works" />
-        <GalleryClients />
+        <GalleryTextFeedbacks />
     </div>
 </template>
 
