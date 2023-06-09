@@ -7,10 +7,20 @@
         <AboutMe class="container" />
         <GalleryWorks class="main__gallery-works" />
         <GalleryTextFeedbacks />
+        <Questions :questions="questions" />
     </div>
 </template>
 
 <script setup lang="ts">
+import { QuestionType } from "~/types";
+
+const questions: QuestionType[] = [
+    {id: 0, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
+    {id: 1, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
+    {id: 2, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
+    {id: 3, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
+    {id: 4, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
+]
 // import { toRaw } from "vue";
 // const {
 //     data: { value: allAnysValue },
