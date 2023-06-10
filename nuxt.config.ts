@@ -33,10 +33,10 @@ export default defineNuxtConfig({
                 },
             },
         },
-        // server: {
-        //     proxy: {
-        //         "/mediafiles": "http://127.0.0.1:8000",
-        //     },
-        // },
+        server: {
+            proxy: {
+                "/mediafiles": "http://127.0.0.1:8000",
+            },
+        },
     },
 });

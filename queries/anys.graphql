@@ -1,6 +1,0 @@
-query anys {
-    allAnys {
-        id
-        name
-    }
-}

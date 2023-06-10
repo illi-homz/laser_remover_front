@@ -1,0 +1,33 @@
+query initData {
+    allIllustrations {
+        items {
+            id
+            title
+            count
+            img
+            type
+        }
+        types {
+            id
+            name
+            value
+        }
+    }
+    allFeedbacksText {
+        id
+        content
+        link
+        username
+        date
+    }
+    allFeedbacksVideo {
+        id
+        video
+        comment
+    }
+    allQuestions {
+        id
+        question
+        answer
+    }
+}

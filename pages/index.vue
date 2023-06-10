@@ -5,14 +5,14 @@
             <Header />
         </div>
         <AboutMe class="container" />
-        <GalleryWorks class="main__gallery-works" />
-        <GalleryTextFeedbacks />
+        <GalleryWorks v-if="illustrations" class="main__gallery-works" :types="types" :illustrations="illustrations" />
+        <GalleryTextFeedbacks :items="feedbacksText" />
         <Questions :questions="questions" />
     </div>
 </template>
 
 <script setup lang="ts">
-import { QuestionType } from "~/types";
+import { AllFeedbacksTextType, IllustrationType, IllustrationTypeType, QuestionType } from "~/types";
 
 const questions: QuestionType[] = [
     {id: 0, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
@@ -21,10 +21,16 @@ const questions: QuestionType[] = [
     {id: 3, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
     {id: 4, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
 ]
-// import { toRaw } from "vue";
-// const {
-//     data: { value: allAnysValue },
-// } = await useAsyncGql("anys");
+const {
+    data: { value: initData },
+} = await useAsyncGql("initData");
+
+//@ts-ignore
+const illustrations: IllustrationType[] = computed(() => initData?.allIllustrations?.items)
+//@ts-ignore
+const types: IllustrationTypeType[] = computed(() => initData?.allIllustrations?.types)
+//@ts-ignore
+const feedbacksText: AllFeedbacksTextType[] = computed(() => initData?.allFeedbacksText)
 
 // const allAnys = toRaw(allAnysValue)?.allAnys;
 </script>

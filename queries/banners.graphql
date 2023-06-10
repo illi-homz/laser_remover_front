@@ -1,7 +1,0 @@
-query banners {
-    allBanners {
-        id
-        title
-        img
-    }
-}

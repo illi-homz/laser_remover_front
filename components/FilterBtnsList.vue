@@ -1,20 +1,25 @@
 <template>
     <ul class="filter-btns-list">
         <li
-            v-for="{ id, title, value } in props.items"
+            @click="onItemClick('all')"
+            class="filter-btns-list__item btn btn--outlined">
+            Все
+        </li>
+        <li
+            v-for="{ id, name, value } in props.items"
             :key="id"
             @click="onItemClick(value)"
             class="filter-btns-list__item btn btn--outlined">
-            {{ title }}
+            {{ name }}
         </li>
     </ul>
 </template>
 
 <script setup lang="ts">
-import { FilterBtnsItemType } from "~/types";
+import { IllustrationTypeType } from "~/types";
 
 const props = defineProps<{
-    items?: FilterBtnsItemType[];
+    items?: IllustrationTypeType[];
 }>();
 
 const emit = defineEmits<{

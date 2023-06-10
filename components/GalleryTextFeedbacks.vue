@@ -17,11 +17,10 @@
             }">
             <template v-slot:slides>
                 <SwiperSlide
-                    v-for="{ id, text, date, clientName, link } in clients"
+                    v-for="{ id, content, date, username, link } in props.items"
                     :key="id"
                     class="gallery-text-feedbacks__slide">
-                    <!-- <div class="gallery-text-feedbacks__item-text">{{ text }}</div> -->
-                    <TextFeedbackCard :text="text" :link="link" :date="date" :clientName="clientName" />
+                    <TextFeedbackCard :text="content" :link="link" :date="date" :clientName="username" />
                 </SwiperSlide>
             </template>
         </Gallery>
@@ -29,38 +28,11 @@
 </template>
 
 <script setup lang="ts">
-const text =
-    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At possimus iure debitis perspiciatis necessitatibus consequuntur tempore quibusdam ut enim, numquam delectus autem doloribus, perferendis est sed libero, corrupti nihil maxime.";
-const clients = [
-    {
-        id: 0,
-        text,
-        clientName: "dolor sit amet consectetur adipisicing elit",
-        date: new Date(),
-        link: "#",
-    },
-    {
-        id: 1,
-        text,
-        clientName: "Алина2",
-        date: new Date(),
-        link: null,
-    },
-    {
-        id: 2,
-        text: text.slice(0, 100),
-        clientName: "Алина3",
-        date: new Date(),
-        link: "#",
-    },
-    {
-        id: 3,
-        text,
-        clientName: "Алина4",
-        date: new Date(),
-        link: "#",
-    },
-];
+import { AllFeedbacksTextType } from '~/types';
+
+const props = defineProps<{
+    items: AllFeedbacksTextType[]
+}>()
 </script>
 
 <style lang="scss">

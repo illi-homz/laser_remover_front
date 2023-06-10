@@ -16,22 +16,20 @@
             }">
             <template v-slot:filters>
                 <FilterBtnsList
-                    :items="filters"
+                    v-if="!!props.types"
+                    :items="props.types"
                     @onItemClick="onFilterClick"
                     class="no-scrollbar gallery-works__filter-btns" />
             </template>
 
             <template v-slot:slides>
-                <SwiperSlide
-                    v-for="{ id, img, description, sessionsCount } in filteredSlides"
-                    :key="id"
-                    class="gallery-works__slide">
-                    <div class="gallery-works__slide-img" :style="`background-image: url(${img});`">
-                        <!-- <img :src="img" alt="мои работы" height="100" /> -->
-                    </div>
+                <SwiperSlide v-for="{ id, img, title, count } in filteredSlides" :key="id" class="gallery-works__slide">
+                    <div class="gallery-works__slide-img" :style="`background-image: url(${MEDIAFILES_URL + img});`" />
                     <div class="gallery-works__slide-info">
-                        <h3 class="gallery-works__slide-text">{{ description }}</h3>
-                        <div class="gallery-works__slide-text">#{{ sessionsCount }} сеансов</div>
+                        <h3 class="gallery-works__slide-text">#{{ title }}</h3>
+                        <div class="gallery-works__slide-text">
+                            #{{ count }} {{ declOfNum(count, ["сеанс", "сеанса", "сеансов"]) }}
+                        </div>
                     </div>
                 </SwiperSlide>
             </template>
@@ -40,80 +38,28 @@
 </template>
 
 <script setup lang="ts">
-import { FilterBtnsItemType } from "~/types";
+import { IllustrationTypeType, IllustrationType } from "~/types";
+import { MEDIAFILES_URL } from "~/utils/variables";
+import { declOfNum } from "~/utils";
 
-const filters: FilterBtnsItemType[] = [
-    { id: 0, title: "Все", value: "all" },
-    { id: 1, title: "Татуировки", value: "tattoos" },
-    { id: 2, title: "Брови", value: "eyebrow" },
-    { id: 3, title: "Веки", value: "eaves" },
-    { id: 4, title: "Губы", value: "lips" },
-    { id: 5, title: "Процесс", value: "process" },
-];
+const props = defineProps<{
+    illustrations?: IllustrationType[];
+    types?: IllustrationTypeType[];
+}>();
+
 const activeFilter = ref();
 
 const onFilterClick = (v: string) => {
     activeFilter.value = v === "all" ? undefined : v;
 };
 
-const slides = [
-    {
-        id: 0,
-        img: "http://www.snut.fr/wp-content/uploads/2015/08/image-de-paysage.jpg",
-        description: "#Удаление татуировки",
-        sessionsCount: 6,
-        type: "tattoos",
-    },
-    {
-        id: 1,
-        img: "http://www.snut.fr/wp-content/uploads/2015/08/image-de-paysage.jpg",
-        description: "#Удаление татуировки",
-        sessionsCount: 6,
-        type: "eyebrow",
-    },
-    {
-        id: 2,
-        img: "http://www.snut.fr/wp-content/uploads/2015/08/image-de-paysage.jpg",
-        description: "#Удаление татуировки",
-        sessionsCount: 6,
-        type: "eaves",
-    },
-    {
-        id: 3,
-        img: "http://www.snut.fr/wp-content/uploads/2015/08/image-de-paysage.jpg",
-        description: "#Удаление татуировки",
-        sessionsCount: 6,
-        type: "lips",
-    },
-    {
-        id: 4,
-        img: "http://www.snut.fr/wp-content/uploads/2015/08/image-de-paysage.jpg",
-        description: "#Удаление татуировки",
-        sessionsCount: 6,
-        type: "process",
-    },
-    {
-        id: 5,
-        img: "http://www.snut.fr/wp-content/uploads/2015/08/image-de-paysage.jpg",
-        description: "#Удаление татуировки",
-        sessionsCount: 6,
-        type: "tattoos",
-    },
-    {
-        id: 6,
-        img: "http://www.snut.fr/wp-content/uploads/2015/08/image-de-paysage.jpg",
-        description: "#Удаление татуировки",
-        sessionsCount: 6,
-        type: "eyebrow",
-    },
-];
-
-const filteredSlides = computed(() =>
-    slides.filter(({ type }) => {
+const filteredSlides = computed(() => {
+    return props.illustrations?.filter(({ type }) => {
         if (!activeFilter.value) return true;
+
         return activeFilter.value === type;
     })
-);
+});
 </script>
 
 <style lang="scss">
