@@ -23,12 +23,14 @@ const props = defineProps<{
     text: string;
     link?: string | null;
     clientName: string;
-    date: Date;
+    date?: string | Date;
 }>();
 
 const textRef = ref<null | HTMLElement>(null);
 const isLong = ref(false);
 const date = computed(() => {
+    if (!props.date) return convertToLicalDateString(new Date());
+
     return convertToLicalDateString(new Date(props.date));
 });
 
@@ -44,7 +46,7 @@ const convertToLicalDateString = (date: Date) => {
 };
 
 const textLineHeight = 23;
-const textLineHeightPx = textLineHeight + 'px';
+const textLineHeightPx = textLineHeight + "px";
 
 onNuxtReady(() => {
     const linesMaxCount = 5;
@@ -72,7 +74,7 @@ onNuxtReady(() => {
         font-family: $mont;
         font-weight: 600;
         font-size: 16px;
-        line-height: v-bind('textLineHeightPx');
+        line-height: v-bind("textLineHeightPx");
         margin-bottom: 4px;
 
         &.hide {

@@ -1,12 +1,13 @@
 <template>
-    <div class="gallery-works">
+    <div class="gallery-works" id="gallery-works">
         <Gallery
             :slides-per-view="1"
-            :space-between="10"
+            :space-between="0"
             :breakpoints="{
                 560: {
                     slidesPerView: 2,
                     slidesPerGroup: 2,
+                    spaceBetween: 10,
                 },
                 992: {
                     slidesPerView: 3,
@@ -64,6 +65,11 @@ const filteredSlides = computed(() => {
 
 <style lang="scss">
 .gallery-works {
+    .gallery__swiper {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
     &__slide {
         height: 443px;
         display: flex;

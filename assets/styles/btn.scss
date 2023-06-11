@@ -11,10 +11,20 @@
     border-radius: 2px;
     font-family: $mont;
     position: relative;
+    text-align: center;
 
     &:hover {
         background-color: $black;
         color: white !important;
+    }
+
+    &--black {
+        background-color: $black;
+        color: white !important;
+
+        &:hover {
+            background-color: $grayDark3;
+        }
     }
 
     &--outlined {

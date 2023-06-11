@@ -6,34 +6,36 @@
         </div>
         <AboutMe class="container" />
         <GalleryWorks v-if="illustrations" class="main__gallery-works" :types="types" :illustrations="illustrations" />
-        <GalleryTextFeedbacks :items="feedbacksText" />
-        <GalleryVideoFeedbacks :items="feedbacksVideo" />
-        <Questions :questions="questions" />
+        <GalleryTextFeedbacks v-if="feedbacksText" :items="feedbacksText" />
+        <GalleryVideoFeedbacks v-if="feedbacksVideo" :items="feedbacksVideo" />
+        <Questions v-if="questions" :questions="questions" />
+        <Contacts />
     </div>
 </template>
 
 <script setup lang="ts">
-import { AllFeedbacksTextType, AllFeedbacksVideoType, IllustrationType, IllustrationTypeType, QuestionType } from "~/types";
+import {
+    AllFeedbacksTextType,
+    AllFeedbacksVideoType,
+    IllustrationType,
+    IllustrationTypeType,
+    QuestionType,
+} from "~/types";
 
-const questions: QuestionType[] = [
-    {id: 0, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
-    {id: 1, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
-    {id: 2, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
-    {id: 3, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
-    {id: 4, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
-]
 const {
     data: { value: initData },
 } = await useAsyncGql("initData");
 
 //@ts-ignore
-const illustrations: IllustrationType[] = computed(() => initData?.allIllustrations?.items)
+const illustrations: IllustrationType[] | undefined = computed(() => initData?.allIllustrations?.items);
 //@ts-ignore
-const types: IllustrationTypeType[] = computed(() => initData?.allIllustrations?.types)
+const types: IllustrationTypeType[] | undefined = computed(() => initData?.allIllustrations?.types);
 //@ts-ignore
-const feedbacksText: AllFeedbacksTextType[] = computed(() => initData?.allFeedbacksText)
+const feedbacksText: AllFeedbacksTextType[] | undefined = computed(() => initData?.allFeedbacksText);
 //@ts-ignore
-const feedbacksVideo: AllFeedbacksVideoType[] = computed(() => initData?.allFeedbacksVideo)
+const feedbacksVideo: AllFeedbacksVideoType[] | undefined = computed(() => initData?.allFeedbacksVideo);
+//@ts-ignore
+const questions: QuestionType[] | undefined = computed(() => initData?.allQuestions);
 
 // const allAnys = toRaw(allAnysValue)?.allAnys;
 </script>

@@ -82,8 +82,11 @@ const toggleAnswers = (idx: number) => {
         cursor: pointer;
 
         &.active .questions__indicator {
+            &::before {
+                transform: translate(-50%) rotate(180deg);
+            }
             &::after {
-                opacity: 0;
+                transform: translate(-50%) rotate(0deg);
             }
         }
     }
@@ -115,11 +118,11 @@ const toggleAnswers = (idx: number) => {
             top: 50%;
             left: 50%;
             transform: translate(-50%);
+            transition: all .2s ease;
         }
 
         &::after {
             transform: translate(-50%) rotate(90deg);
-            transition: all .2s ease;
         }
     }
 

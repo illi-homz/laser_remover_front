@@ -76,8 +76,16 @@ const playVideo = (idx: number) => {
 
 <style lang="scss">
 .gallery-video-feedbacks {
+    .gallery__swiper {
+        padding-right: 75px;
+
+        @include mobile {
+            padding-right: 24px;
+        }
+    }
+    
     &__slide {
-        width: 280px;
+        // width: 280px;
         height: 412px;
         position: relative;
         border: 5px solid $white;

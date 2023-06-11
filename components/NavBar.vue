@@ -21,10 +21,10 @@
 <script setup lang="ts">
 const links = [
     { id: 0, title: "Обо мне", url: "#aboutme" },
-    { id: 1, title: "Галерея", url: "#gallery" },
-    { id: 2, title: "Отзывы", url: "#feedbacks" },
+    { id: 1, title: "Галерея", url: "#gallery-works" },
+    { id: 2, title: "Отзывы", url: "#gallery-text-feedbacks" },
     { id: 3, title: "Частые вопросы", url: "#questions" },
-    { id: 4, title: "Контакты", url: "#contacts" },
+    { id: 4, title: "Контакты", url: "#contact-form" },
 ];
 
 const showSignUpPopup = () => {
