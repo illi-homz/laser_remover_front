@@ -24,15 +24,18 @@
                         v-if="idx !== activeIndex"
                         class="gallery-video-feedbacks__slide-action"
                         @click="playVideo(idx)">
-                        <div class="btn btn--outlined gallery-video-feedbacks__slide-action-btn"></div>
+                        <div class="btn btn--outlined btn--play gallery-video-feedbacks__slide-action-btn">
+                            <nuxt-icon name="play" class="gallery-video-feedbacks__play" filled />
+                        </div>
                     </div>
                     <video
-                        autoplay
+                        ref="videos"
                         :muted="idx !== activeIndex"
                         loop
+                        playsinline
+                        preload="auto"
                         @click="playVideo(idx)"
-                        class="gallery-video-feedbacks__video-item"
-                    >
+                        class="gallery-video-feedbacks__video-item">
                         <source :src="MEDIAFILES_URL + video" type="video/mp4" />
                     </video>
                 </SwiperSlide>
@@ -48,13 +51,24 @@ const props = defineProps<{
     items: AllFeedbacksVideoType[];
 }>();
 
+const videos = ref<HTMLVideoElement[] | null>(null);
 const activeIndex = ref<number | null>(null);
 
 const playVideo = (idx: number) => {
+    if (activeIndex.value !== null) {
+        const prevVideo = videos.value?.[activeIndex.value]
+        prevVideo?.pause();
+    }
+
+    const currentVideo = videos.value?.[idx]
+    
     if (activeIndex.value === idx) {
         activeIndex.value = null;
+        currentVideo?.pause();
         return;
     }
+
+    currentVideo?.play();
 
     activeIndex.value = idx;
 };
@@ -89,12 +103,31 @@ const playVideo = (idx: number) => {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: #b448;
+        background: linear-gradient(0deg, rgba(10, 10, 10, 0.4), rgba(10, 10, 10, 0.4)), url(.jpg);
+
+        &:hover {
+            .gallery-video-feedbacks__slide-action-btn {
+                background-color: $accent;
+                border-color: $accent;
+
+                svg path {
+                fill: $white;
+            }
+            }
+        }
     }
 
-    &__slide-action-btn {
+    & &__slide-action-btn {
         width: 56px;
         height: 56px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $white;
+
+        svg path {
+            fill: $black;
+        }
     }
 }
 </style>
