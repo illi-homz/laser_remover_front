@@ -30,3 +30,8 @@ export type AllFeedbacksTextType = {
     username: string;
     date: string;
 }
+
+export type AllFeedbacksVideoType = {
+    id: number | string;
+    video: string;
+}

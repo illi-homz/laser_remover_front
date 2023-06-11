@@ -7,12 +7,13 @@
         <AboutMe class="container" />
         <GalleryWorks v-if="illustrations" class="main__gallery-works" :types="types" :illustrations="illustrations" />
         <GalleryTextFeedbacks :items="feedbacksText" />
+        <GalleryVideoFeedbacks :items="feedbacksVideo" />
         <Questions :questions="questions" />
     </div>
 </template>
 
 <script setup lang="ts">
-import { AllFeedbacksTextType, IllustrationType, IllustrationTypeType, QuestionType } from "~/types";
+import { AllFeedbacksTextType, AllFeedbacksVideoType, IllustrationType, IllustrationTypeType, QuestionType } from "~/types";
 
 const questions: QuestionType[] = [
     {id: 0, question: 'Почему почему почему?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur optio architecto nihil impedit ipsam! Exercitationem voluptatem atque, dignissimos '},
@@ -31,6 +32,8 @@ const illustrations: IllustrationType[] = computed(() => initData?.allIllustrati
 const types: IllustrationTypeType[] = computed(() => initData?.allIllustrations?.types)
 //@ts-ignore
 const feedbacksText: AllFeedbacksTextType[] = computed(() => initData?.allFeedbacksText)
+//@ts-ignore
+const feedbacksVideo: AllFeedbacksVideoType[] = computed(() => initData?.allFeedbacksVideo)
 
 // const allAnys = toRaw(allAnysValue)?.allAnys;
 </script>
