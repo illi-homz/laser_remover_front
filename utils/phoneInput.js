@@ -122,3 +122,5 @@ export const checkLength = function (input) {
 	if (input.indexOf('+7') !== -1) return 18;
 	else return 17;
 };
+
+export const phonePattern = "+7 (***) ***-**-**";

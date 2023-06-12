@@ -4,6 +4,7 @@
         :maxlength="pattern.length"
         placeholder="Номер телефона"
         inputmode="tel"
+        :error="props.error"
         @onInput="onInput"
         @onKeyDown="onKeyDown" />
 </template>
@@ -11,6 +12,7 @@
 <script setup lang="ts">
 const props = defineProps<{
     modelValue?: string;
+    error?: string;
 }>();
 const emit = defineEmits(["update:modelValue"]);
 const pattern = "+7 (***) ***-**-**";

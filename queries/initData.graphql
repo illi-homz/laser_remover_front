@@ -1,4 +1,8 @@
 query initData {
+    allServices {
+        id
+        title
+    }
     allIllustrations {
         items {
             id

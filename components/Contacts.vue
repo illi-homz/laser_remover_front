@@ -35,51 +35,104 @@
                 <div class="contacts__form-wrap">
                     <div class="contacts__form-title">Оставляй заявку, мы свяжемся с тобой для уточнения деталей</div>
                     <div class="double">
-                        <InputText v-model="name" placeholder="Имя" />
-                        <InputText v-model="lastname" placeholder="Фамилия" />
+                        <InputText v-model="name" :error="errors.name" placeholder="Имя" />
+                        <InputText v-model="lastname" :error="errors.lastname" placeholder="Фамилия" />
                     </div>
-                    <InputPhone v-model="phone" />
-                    <div>
+                    <InputPhone v-model="phone" :error="errors.phone" class="mb18" />
+                    <div class="mb18">
                         <div class="contacts__contacts-text dark contacts__form-messagers-title">
                             Что предпочитаешь?
                         </div>
                         <div class="double">
                             <Checkbox v-model="isWhatsApp" title="WhatsApp" />
-                            <Checkbox v-model="isTelegramm" title="Telegram" />
+                            <Checkbox v-model="isTelegram" title="Telegram" />
                         </div>
                     </div>
-                    <Select placeholder="авивпива" :items="services" v-model="service" />
+                    <Select
+                        v-if="services"
+                        placeholder="авивпива"
+                        :items="services"
+                        v-model="service"
+                        :error="errors.service" />
                 </div>
-                <div class="btn btn--black">Отправить заявку</div>
+                <div class="btn btn--black" @click="submit">Отправить заявку</div>
             </div>
+            <div class="contacts__banner" />
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import avatarMiniImage from "@/assets/img/avatar-mini.png";
+import { sendFormToTelegram } from "@/api/sendFormToTelegram";
+import { ContactsFormDataType, ServiceType } from "~/types";
+
+const props = defineProps<{
+    services?: ServiceType[];
+}>();
 
 const name = ref("");
 const lastname = ref("");
 const phone = ref("");
 const service = ref("");
 const isWhatsApp = ref(false);
-const isTelegramm = ref(false);
+const isTelegram = ref(false);
+const errors = ref<{ [key: string]: string }>({});
 
-const services = {
-    1: "qqqqqqqqq",
-    2: "222222222",
-    3: "eeeeeeeee",
-    4: "eeeeeeeee",
-    5: "eeeeeeeee",
-    6: "eeeeeeeee",
-    7: "eeeeeeeee",
-    8: "eeeeeeeee",
-    9: "eeeeeeeee",
-    10: "eeeeeeeee",
+const services = computed(() => {
+    return props.services?.reduce<{ [key: string]: string }>((acc, { id, title }: ServiceType) => {
+        return {
+            ...acc,
+            [id]: title,
+        };
+    }, {});
+});
+
+const formData = computed((): ContactsFormDataType => {
+    const serviceId = service.value;
+    const whatsapp = isWhatsApp.value && "WhatsApp";
+    const telegram = isTelegram.value && "Telegram";
+    const messegers: string[] = [];
+
+    whatsapp && messegers.push(whatsapp);
+    telegram && messegers.push(telegram);
+
+    return {
+        name: name.value,
+        lastname: lastname.value,
+        phone: phone.value,
+        service: services.value?.[serviceId] || "",
+        messegers,
+    };
+});
+
+const required = (message = "Обязательное поле") => {
+    return (value: any) => !!value || message;
 };
 
-const submit = async () => {};
+const validation = {
+    name: [required("Укажите ваше имя")],
+    lastname: [],
+    phone: [required("Укажите телефон для связи"), minLength(phonePattern.length - 1, "Некорректный номер")],
+    service: [required("Выберите услугу")],
+    messegers: [],
+};
+
+const submit = async () => {
+    const [result, errorsObject] = validate(formData.value, validation);
+
+    if (!result) {
+        errors.value = errorsObject || {};
+        return;
+    }
+
+    errors.value = {};
+
+    const response = await sendFormToTelegram(formData.value);
+    console.log('response', response)
+    const json = await response.json()
+    console.log('json', json)
+};
 </script>
 
 <style lang="scss">
@@ -89,6 +142,14 @@ const submit = async () => {};
 
     @include tablet {
         padding-top: 38px;
+        background-image: url('@/assets/img/contacts_bg.png');
+        background-position: bottom left;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .mb18 {
+        margin-bottom: 18px;
     }
 
     .double {
@@ -130,8 +191,16 @@ const submit = async () => {};
         }
     }
 
-    @include tablet {
-        background: $black;
+    &__banner {
+        height: 260px;
+        background-image: url('@/assets/img/laser_hand.png');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        @include tablet {
+            display: none;
+        }
     }
 
     & &__block-title {
@@ -295,7 +364,7 @@ const submit = async () => {};
     &__form-wrap {
         display: flex;
         flex-direction: column;
-        row-gap: 20px;
+        row-gap: 2px;
         margin-bottom: 24px;
     }
 

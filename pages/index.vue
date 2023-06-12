@@ -9,7 +9,7 @@
         <GalleryTextFeedbacks v-if="feedbacksText" :items="feedbacksText" />
         <GalleryVideoFeedbacks v-if="feedbacksVideo" :items="feedbacksVideo" />
         <Questions v-if="questions" :questions="questions" />
-        <Contacts />
+        <Contacts :services="services" />
     </div>
 </template>
 
@@ -20,6 +20,7 @@ import {
     IllustrationType,
     IllustrationTypeType,
     QuestionType,
+ServiceType,
 } from "~/types";
 
 const {
@@ -36,6 +37,8 @@ const feedbacksText: AllFeedbacksTextType[] | undefined = computed(() => initDat
 const feedbacksVideo: AllFeedbacksVideoType[] | undefined = computed(() => initData?.allFeedbacksVideo);
 //@ts-ignore
 const questions: QuestionType[] | undefined = computed(() => initData?.allQuestions);
+//@ts-ignore
+const services: ServiceType[] | undefined = computed(() => initData?.allServices);
 
 // const allAnys = toRaw(allAnysValue)?.allAnys;
 </script>

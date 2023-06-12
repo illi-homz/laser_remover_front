@@ -10,6 +10,11 @@ export type QuestionType = {
     answer: string;
 }
 
+export type ServiceType = {
+    id: number | string;
+    title: string;
+}
+
 export type IllustrationType = {
     id: string;
     title: string;
@@ -34,4 +39,12 @@ export type AllFeedbacksTextType = {
 export type AllFeedbacksVideoType = {
     id: number | string;
     video: string;
+}
+
+export type ContactsFormDataType = {
+    name: string,
+    lastname: string,
+    phone: string,
+    service: string,
+    messegers: string[],
 }
