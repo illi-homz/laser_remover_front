@@ -1,36 +1,53 @@
 <template>
     <div class="navbar">
-        <nuxt-link to="#" class="navbar__logo-link">
+        <nuxt-link to="#" class="navbar__logo-link" @click="close">
             <nuxt-icon name="logo" class="navbar__logo" filled />
         </nuxt-link>
 
-        <ul class="navbar__links">
-            <li v-for="{ id, title, url } in links" :key="id" class="navbar__link">
-                <nuxt-link :to="url">{{ title }}</nuxt-link>
-            </li>
-        </ul>
+        <div class="navbar__content" :class="{ opened: inOpened }">
+            <ul class="navbar__links">
+                <li v-for="{ id, title, url } in links" :key="id" class="navbar__link" @click="close">
+                    <nuxt-link :to="url">{{ title }}</nuxt-link>
+                </li>
+            </ul>
 
-        <div class="btn btn--medium navbar__btn" @click="showSignUpPopup">Записаться</div>
+            <div class="btn btn--medium navbar__btn" @click="close">Записаться</div>
+        </div>
 
-        <div class="navbar__burger">
-            <div class="navbar__burger-lines" />
+        <div class="navbar__burger" :class="{ opened: inOpened }" @click="toggleMenu">
+            <div class="navbar__burger-wrapper">
+                <div class="navbar__burger-lines" />
+            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+const inOpened = ref(false);
+
+const open = () => {
+    inOpened.value = true;
+    const body = document.querySelector("body");
+    body?.classList.add("lock");
+    window.scrollTo(0, 0);
+};
+const close = () => {
+    inOpened.value = false;
+    const body = document.querySelector("body");
+    body?.classList.remove("lock");
+};
+
+const toggleMenu = () => {
+    inOpened.value ? close() : open();
+};
+
 const links = [
     { id: 0, title: "Обо мне", url: "#aboutme" },
     { id: 1, title: "Галерея", url: "#gallery-works" },
     { id: 2, title: "Отзывы", url: "#gallery-text-feedbacks" },
     { id: 3, title: "Частые вопросы", url: "#questions" },
-    { id: 4, title: "Контакты", url: "#contact-form" },
+    { id: 4, title: "Контакты", url: "#contacts" },
 ];
-
-const showSignUpPopup = () => {
-    console.log('showSignUpPopup')
-}
-
 </script>
 
 <style lang="scss">
@@ -39,10 +56,56 @@ const showSignUpPopup = () => {
     align-items: center;
     padding-top: 16px;
     padding-bottom: 16px;
-	z-index: 100 !important;
-    
+    z-index: 100 !important;
+    position: relative;
+
+    &.container {
+        padding-right: 0;
+    }
+
     @include tablet {
-        background: linear-gradient(98.79deg, #23252C 30.69%, #000000 100%);
+        background: linear-gradient(98.79deg, #23252c 30.69%, #000000 100%);
+
+        &.container {
+            padding-right: 130px;
+        }
+    }
+
+    &__content {
+        // display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: $black;
+        width: 100vw;
+        height: 100vh;
+        z-index: 101;
+        display: flex;
+        flex-direction: column;
+        padding: 32px 20px;
+        transform: translateY(-50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s ease;
+
+        &.opened {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @include tablet {
+            align-items: center;
+            position: static;
+            width: auto;
+            height: auto;
+            flex-direction: row;
+            background-color: $transparent;
+            padding: 0;
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
     }
 
     &__logo.nuxt-icon {
@@ -56,22 +119,30 @@ const showSignUpPopup = () => {
         }
     }
 
-	&__logo-link {
-		display: block;
+    &__logo-link {
+        display: block;
         margin-right: auto;
-		cursor: pointer;
-	}
+        cursor: pointer;
+        position: relative;
+        z-index: 102;
+    }
 
     &__links {
-        display: none;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        row-gap: 8px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 40px;
         column-gap: 30px;
         margin-left: 32px;
 
         @include tablet {
-            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            row-gap: 8px;
+            column-gap: 30px;
         }
     }
 
@@ -79,7 +150,7 @@ const showSignUpPopup = () => {
         position: relative;
 
         &::before {
-            content: '';
+            content: "";
             display: none;
             position: absolute;
             bottom: 0;
@@ -95,22 +166,19 @@ const showSignUpPopup = () => {
                 display: block;
             }
         }
-        
+
         a {
             font-family: $mont;
             color: $white;
             text-transform: uppercase;
             font-size: 18px;
             line-height: 23px;
-			font-weight: 600;
+            font-weight: 600;
         }
     }
 
     & &__btn {
-        display: none;
-
         @include tablet {
-            display: flex;
             margin-left: 30px;
         }
 
@@ -124,12 +192,43 @@ const showSignUpPopup = () => {
     }
 
     &__burger {
+        position: relative;
+        z-index: 105;
+        padding: 24px;
+
+        @include tablet {
+            display: none;
+        }
+
+        &.opened {
+            .navbar__burger-wrapper {
+                &::before,
+                &::after {
+                    top: 50%;
+                }
+
+                &::before {
+                    transform: translateY(-50%) rotate(-135deg);
+                }
+                &::after {
+                    transform: translateY(-50%) rotate(135deg);
+                }
+            }
+
+            .navbar__burger-lines {
+                opacity: 0;
+            }
+        }
+    }
+
+    &__burger-wrapper {
         height: 14px;
         width: 20px;
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        position: relative;
+
 
         &::before,
         &::after {
@@ -139,6 +238,7 @@ const showSignUpPopup = () => {
             height: 2px;
             width: 100%;
             background-color: $white;
+            transition: all .2s ease;
         }
 
         &::before {
@@ -147,10 +247,6 @@ const showSignUpPopup = () => {
 
         &::after {
             bottom: 0;
-        }
-
-        @include tablet {
-            display: none;
         }
     }
 
