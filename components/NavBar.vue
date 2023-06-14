@@ -72,7 +72,6 @@ const links = [
     }
 
     &__content {
-        // display: none;
         position: absolute;
         left: 0;
         top: 0;
@@ -135,9 +134,9 @@ const links = [
         justify-content: center;
         row-gap: 40px;
         column-gap: 30px;
-        margin-left: 32px;
 
         @include tablet {
+            margin-left: 32px;
             flex-direction: row;
             justify-content: flex-end;
             flex-wrap: wrap;
