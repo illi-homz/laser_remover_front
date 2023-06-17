@@ -13,10 +13,10 @@ export default defineNuxtConfig({
                 { name: "description", content: "any description" },
                 { name: "keywords", content: "nuxt vue" },
             ],
-            title: "Hello new project",
+            title: "Михаил Кисиев",
         },
     },
-    modules: ["nuxt-swiper", "nuxt-graphql-client", "nuxt-icons"],
+    modules: ["nuxt-swiper", "nuxt-graphql-client", "nuxt-icons", "nuxt-proxy"],
     swiper: {},
     imports: {
         dirs: [],
@@ -33,13 +33,12 @@ export default defineNuxtConfig({
                 },
             },
         },
-        server: {
-            proxy: {
-                "/mediafiles": "http://127.0.0.1:8000",
-                "/staticfiles": "http://127.0.0.1:8000",
-                "/api": "http://127.0.0.1:8000",
-                "/admin": "http://127.0.0.1:8000",
-            },
+    },
+    proxy: {
+        options: {
+            target: "http://127.0.0.1:8000",
+            changeOrigin: true,
+            pathFilter: ["/mediafiles", "/staticfiles", "/api", "/admin"],
         },
     },
 });

@@ -11,7 +11,7 @@
                 </li>
             </ul>
 
-            <div class="btn btn--medium navbar__btn" @click="close">Записаться</div>
+            <nuxt-link class="btn btn--medium navbar__btn" to="#contacts">Записаться</nuxt-link>
         </div>
 
         <div class="navbar__burger" :class="{ opened: inOpened }" @click="toggleMenu">

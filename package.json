@@ -4,6 +4,9 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "start": "nuxt start",
+    "pm2start": "pm2 start",
+    "pm2stop": "pm2 stop default",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -17,6 +20,7 @@
   "dependencies": {
     "nuxt-graphql-client": "^0.2.27",
     "nuxt-icons": "^3.2.1",
+    "nuxt-proxy": "^0.4.1",
     "nuxt-swiper": "^1.1.0"
   }
 }

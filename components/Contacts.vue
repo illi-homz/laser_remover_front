@@ -79,6 +79,16 @@ const isWhatsApp = ref(false);
 const isTelegram = ref(false);
 const errors = ref<{ [key: string]: string }>({});
 
+const clean = () => {
+    name.value = "";
+    lastname.value = "";
+    phone.value = "";
+    service.value = "";
+    isWhatsApp.value = false;
+    isTelegram.value = false;
+    errors.value = {};
+};
+
 const services = computed(() => {
     return props.services?.reduce<{ [key: string]: string }>((acc, { id, title }: ServiceType) => {
         return {
@@ -129,9 +139,10 @@ const submit = async () => {
     errors.value = {};
 
     const response = await sendFormToTelegram(formData.value);
-    console.log('response', response)
-    const json = await response.json()
-    console.log('json', json)
+    console.log("response", response);
+    const json = await response.json();
+    console.log("json", json);
+    clean();
 };
 </script>
 
@@ -142,7 +153,7 @@ const submit = async () => {
 
     @include tablet {
         padding-top: 38px;
-        background-image: url('@/assets/img/contacts_bg.png');
+        background-image: url("@/assets/img/contacts_bg.png");
         background-position: bottom left;
         background-size: cover;
         background-repeat: no-repeat;
@@ -193,7 +204,7 @@ const submit = async () => {
 
     &__banner {
         height: 260px;
-        background-image: url('@/assets/img/laser_hand.png');
+        background-image: url("@/assets/img/laser_hand.png");
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;

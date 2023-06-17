@@ -1,42 +1,53 @@
-# Nuxt 3 Minimal Starter
+  
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
-
-Make sure to install the dependencies:
+## Настройка
+Установить все зависимости (использую yarn):
+  
 
 ```bash
-# yarn
 yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
 ```
 
-## Development Server
+## Тестовый сервер
 
-Start the development server on `http://localhost:3000`
+Старт тестового сервера на `http://localhost:3000`
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 ## Production
 
-Build the application for production:
+Сборка для релиза:
 
 ```bash
-npm run build
+yarn build
+```
+
+Старт с pm2
+
+установка
+
+```bash
+yarn global add pm2
+```
+
+запуск
+
+```
+yarn pm2start
+```
+
+остановка
+
+```
+yarn pm2stop
 ```
 
 Locally preview production build:
 
 ```bash
-npm run preview
+yarn preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
