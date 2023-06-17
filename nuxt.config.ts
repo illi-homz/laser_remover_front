@@ -16,6 +16,7 @@ export default defineNuxtConfig({
             title: "Михаил Кисиев",
         },
     },
+    // modules: ["nuxt-swiper", "nuxt-graphql-client", "nuxt-icons"],
     modules: ["nuxt-swiper", "nuxt-graphql-client", "nuxt-icons", "nuxt-proxy"],
     swiper: {},
     imports: {
