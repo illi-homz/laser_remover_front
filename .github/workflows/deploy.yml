@@ -14,7 +14,7 @@ jobs:
           command: |
             cd /home/www/projects/tatu_by_laser_remover/front
             git checkout .; git clean -fd; git pull; yarn build; killall node
-          host: 45.8.251.158
+          host: ${{ secrets.HOST }}
           user: www
-          key: ${{secrets.SSH_PRIVATE_KEY}}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           args: "-tt"
