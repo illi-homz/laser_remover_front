@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
+      - uses: fifsky/ssh-action@master
         with:
-          ORIGIN: ${{ secrets.HOST }}
-          NAME: production
-          USER: www
-          SSHKEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      - run: |
-          cd /home/www/projects/tatu_by_laser_remover/front
-          git checkout .; git clean -fd; git pull; yarn build; killall node
+          command: |
+            cd /home/www/projects/tatu_by_laser_remover/front
+            git checkout .; git clean -fd; git pull; yarn build; killall node
+          host: ${{ secrets.HOST }}
+          user: www
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          args: "-tt"
