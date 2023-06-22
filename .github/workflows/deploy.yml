@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: garygrossgarten/github-action-ssh@release
+      - uses: fifsky/ssh-action@master
         with:
           command: |
-            ls -a
             cd /home/www/projects/tatu_by_laser_remover/front
             git checkout .; git clean -fd; git pull; yarn build; killall node
           host: ${{ secrets.HOST }}
-          username: www
-          privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+          user: www
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          args: "-tt"
