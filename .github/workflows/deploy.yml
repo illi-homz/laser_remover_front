@@ -11,6 +11,9 @@ jobs:
     steps:
       - uses: fifsky/ssh-action@master
         with:
+          command: |
+            cd /home/www/projects/tatu_by_laser_remover/front
+            git checkout .; git clean -fd; git pull; yarn build; killall node
           host: ${{ secrets.HOST }}
           user: www
           key: ${{ secrets.SSH_PRIVATE_KEY }}
