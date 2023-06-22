@@ -15,7 +15,6 @@ jobs:
           host: ${{ secrets.HOST }}
           user: www
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          args: "-tt"
           script: |
             whoami
             ls -al
