@@ -9,12 +9,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: fifsky/ssh-action@master
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v0.1.10
         with:
-          command: |
-            cd /home/www/projects/tatu_by_laser_remover/front
-            git checkout .; git clean -fd; git pull; yarn build; killall node
           host: ${{ secrets.HOST }}
           user: www
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           args: "-tt"
+          script: |
+            whoami
+            ls -al
+            pwd
+            cd /home/www/projects/tatu_by_laser_remover/front
+            git checkout .; git clean -fd; git pull; yarn build; killall node
+            
