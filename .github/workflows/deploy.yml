@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: shimataro/ssh-key-action@v2
+      - uses: fifsky/ssh-action@master
         with:
+          host: ${{ secrets.HOST }}
+          user: www
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          
