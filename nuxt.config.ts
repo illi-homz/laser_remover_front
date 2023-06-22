@@ -39,7 +39,7 @@ export default defineNuxtConfig({
         options: {
             target: "http://127.0.0.1:8000",
             changeOrigin: true,
-            pathFilter: ["/mediafiles", "/staticfiles", "/api", "/admin"],
+            pathFilter: ["/api", "/admin"],
         },
     },
 });
