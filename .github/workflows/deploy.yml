@@ -12,8 +12,8 @@ jobs:
       - uses: fifsky/ssh-action@master
         with:
           command: |
-            cd /home/www/projects/tatu_by_laser_remover/front
+            cd ~/projects/tatu_by_laser_remover/front
             git checkout .; git clean -fd; git pull; yarn build; killall node
           host: ${{ secrets.HOST }}
-          user: www
+          user: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
