@@ -5,7 +5,11 @@
             <Header />
         </div>
         <AboutMe class="container" />
-        <GalleryWorks v-if="illustrations?.length" class="main__gallery-works" :types="types" :illustrations="illustrations" />
+        <GalleryWorks
+            v-if="illustrations?.length"
+            class="main__gallery-works"
+            :types="types"
+            :illustrations="illustrations" />
         <GalleryTextFeedbacks v-if="feedbacksText?.length" :items="feedbacksText" />
         <GalleryVideoFeedbacks v-if="feedbacksVideo?.length" :items="feedbacksVideo" />
         <Questions v-if="questions?.length" :questions="questions" />
@@ -20,8 +24,13 @@ import {
     IllustrationType,
     IllustrationTypeType,
     QuestionType,
-ServiceType,
+    ServiceType,
 } from "~/types";
+
+useHead({
+    title: "Михаил Кисиев | Лазерное удаление татуировок",
+    meta: [{ name: "description", content: "Тут надо какое то описание ..." }],
+});
 
 const {
     data: { value: initData },
