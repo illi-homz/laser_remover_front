@@ -1,5 +1,5 @@
 <template>
-    <div class="gallery-video-feedbacks">
+    <div class="gallery-video-feedbacks" id="gallery-text-feedbacks">
         <Gallery
             title="Видео-отзывы"
             :slides-per-view="1"

@@ -48,3 +48,9 @@ export type ContactsFormDataType = {
     service: string,
     messegers: string[],
 }
+
+export type LinkType = {
+    id: number;
+    title: string;
+    url: string;
+}

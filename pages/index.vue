@@ -1,7 +1,9 @@
 <template>
     <div class="main">
+        <div class="main__navbar">
+            <NavBar class="container" :links="links" />
+        </div>
         <div class="main__header-wrapper">
-            <NavBar class="container" />
             <Header />
         </div>
         <AboutMe class="container" />
@@ -23,6 +25,7 @@ import {
     AllFeedbacksVideoType,
     IllustrationType,
     IllustrationTypeType,
+    LinkType,
     QuestionType,
     ServiceType,
 } from "~/types";
@@ -37,19 +40,32 @@ const {
 } = await useAsyncGql("initData");
 
 //@ts-ignore
-const illustrations: IllustrationType[] | undefined = computed(() => initData?.allIllustrations?.items);
+const illustrations = computed((): IllustrationType[] | undefined => initData?.allIllustrations?.items);
 //@ts-ignore
-const types: IllustrationTypeType[] | undefined = computed(() => initData?.allIllustrations?.types);
+const types = computed((): IllustrationTypeType[] | undefined => initData?.allIllustrations?.types);
 //@ts-ignore
-const feedbacksText: AllFeedbacksTextType[] | undefined = computed(() => initData?.allFeedbacksText);
+const feedbacksText = computed((): AllFeedbacksTextType[] | undefined => initData?.allFeedbacksText);
 //@ts-ignore
-const feedbacksVideo: AllFeedbacksVideoType[] | undefined = computed(() => initData?.allFeedbacksVideo);
+const feedbacksVideo = computed((): AllFeedbacksVideoType[] | undefined => initData?.allFeedbacksVideo);
 //@ts-ignore
-const questions: QuestionType[] | undefined = computed(() => initData?.allQuestions);
+const questions = computed((): QuestionType[] | undefined => initData?.allQuestions);
 //@ts-ignore
-const services: ServiceType[] | undefined = computed(() => initData?.allServices);
+const services = computed((): ServiceType[] | undefined => initData?.allServices);
 
-// const allAnys = toRaw(allAnysValue)?.allAnys;
+const links = computed(() => {
+    const lks: LinkType[] = [{ id: 0, title: "Обо мне", url: "#aboutme" }];
+
+    illustrations.value?.length && lks.push({ id: 1, title: "Галерея", url: "#gallery-works" });
+
+    if (feedbacksText.value?.length || feedbacksVideo.value?.length) {
+        lks.push({ id: 2, title: "Отзывы", url: "#gallery-text-feedbacks" });
+    }
+
+    questions.value?.length && lks.push({ id: 3, title: "Частые вопросы", url: "#questions" });
+    lks.push({ id: 4, title: "Контакты", url: "#contacts" });
+
+    return lks;
+});
 </script>
 
 <style lang="scss">
@@ -63,20 +79,29 @@ const services: ServiceType[] | undefined = computed(() => initData?.allServices
         background: linear-gradient(99.51deg, #23252c 18.79%, #000000 100%);
     }
 
-    .navbar {
-        width: 100%;
-        margin-bottom: 45px;
-
-        @include tablet {
-            margin-bottom: 45px;
-        }
+    &__navbar {
+        background: linear-gradient(98.79deg, #23252c 30.69%, #000000 100%);
 
         @include desktop {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
+            z-index: 100;
+        }
+    }
+
+    .navbar {
+        width: 100%;
+        // margin-bottom: 45px;
+
+        @include tablet {
+            // margin-bottom: 45px;
+        }
+
+        @include desktop {
+            // position: absolute;
         }
     }
 

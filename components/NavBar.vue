@@ -23,7 +23,13 @@
 </template>
 
 <script setup lang="ts">
+import { LinkType } from "~/types";
+
 const inOpened = ref(false);
+
+const props = defineProps<{
+    links?: LinkType[];
+}>();
 
 const open = () => {
     inOpened.value = true;
@@ -41,13 +47,9 @@ const toggleMenu = () => {
     inOpened.value ? close() : open();
 };
 
-const links = [
-    { id: 0, title: "Обо мне", url: "#aboutme" },
-    { id: 1, title: "Галерея", url: "#gallery-works" },
-    { id: 2, title: "Отзывы", url: "#gallery-text-feedbacks" },
-    { id: 3, title: "Частые вопросы", url: "#questions" },
-    { id: 4, title: "Контакты", url: "#contacts" },
-];
+const links = computed(() => {
+    return props.links || []
+})
 </script>
 
 <style lang="scss">
@@ -58,18 +60,6 @@ const links = [
     padding-bottom: 16px;
     z-index: 100 !important;
     position: relative;
-
-    &.container {
-        padding-right: 0;
-    }
-
-    @include tablet {
-        background: linear-gradient(98.79deg, #23252c 30.69%, #000000 100%);
-
-        &.container {
-            padding-right: 130px;
-        }
-    }
 
     &__content {
         position: absolute;
