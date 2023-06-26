@@ -5,10 +5,10 @@
             <Header />
         </div>
         <AboutMe class="container" />
-        <GalleryWorks v-if="illustrations" class="main__gallery-works" :types="types" :illustrations="illustrations" />
-        <GalleryTextFeedbacks v-if="feedbacksText" :items="feedbacksText" />
-        <GalleryVideoFeedbacks v-if="feedbacksVideo" :items="feedbacksVideo" />
-        <Questions v-if="questions" :questions="questions" />
+        <GalleryWorks v-if="illustrations?.length" class="main__gallery-works" :types="types" :illustrations="illustrations" />
+        <GalleryTextFeedbacks v-if="feedbacksText?.length" :items="feedbacksText" />
+        <GalleryVideoFeedbacks v-if="feedbacksVideo?.length" :items="feedbacksVideo" />
+        <Questions v-if="questions?.length" :questions="questions" />
         <Contacts :services="services" />
     </div>
 </template>

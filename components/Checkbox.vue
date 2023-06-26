@@ -25,9 +25,10 @@ const onItemClick = () => {
 
     &.checked {
         .checkbox__icon {
+            background-color: $black;
+            border-color: $transparent;
             &::after {
-                opacity: .7;
-                visibility: visible;
+                opacity: 1;
             }
         }
     }
@@ -38,20 +39,19 @@ const onItemClick = () => {
         border: 2px solid $grayMedium;
         border-radius: 2px;
         position: relative;
+        transition: all .2s ease;
 
         &::after {
             content: "";
             position: absolute;
+            background: url('@/assets/icons/check.svg') center no-repeat;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
-            border-radius: 2px;
-            background-color: $black;
-            transition: all .2s ease;
+            width: 10.8px;
+            height: 9px;
+            transition: opacity .2s ease;
             opacity: 0;
-            visibility: hidden;
         }
     }
 

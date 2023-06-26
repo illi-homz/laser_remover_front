@@ -16,7 +16,6 @@ export default defineNuxtConfig({
             title: "Михаил Кисиев",
         },
     },
-    // modules: ["nuxt-swiper", "nuxt-graphql-client", "nuxt-icons"],
     modules: ["nuxt-swiper", "nuxt-graphql-client", "nuxt-icons"],
     swiper: {},
     imports: {
@@ -43,11 +42,4 @@ export default defineNuxtConfig({
             },
         },
     },
-    // proxy: {
-    //     options: {
-    //         target: "http://127.0.0.1:8000",
-    //         changeOrigin: true,
-    //         pathFilter: ["/api"],
-    //     },
-    // },
 });

@@ -1,16 +1,16 @@
 <template>
-    <div class="g-select" :class="{ opened: isOpen, error: !!props.error }">
-        <div class="g-select__error">{{ props.error || '-' }}</div>
-        <div class="g-select__wrapper">
-            <div class="g-select__header" @click="toggle()">
-                <span class="g-select__label">{{ title }}</span>
+    <div class="select" :class="{ opened: isOpen, error: !!props.error }">
+        <div class="select__error">{{ props.error || '-' }}</div>
+        <div class="select__wrapper">
+            <div class="select__header" @click="toggle()">
+                <span class="select__label">{{ title }}</span>
             </div>
-            <div ref="optionsNode" class="g-select__body scroll" :class="{ opened: isOpen }">
-                <ul class="g-select__items no-scrollbar">
+            <div ref="optionsNode" class="select__body scroll" :class="{ opened: isOpen }">
+                <ul class="select__items no-scrollbar">
                     <li
                         v-for="{ id, title } in items"
                         :key="id"
-                        class="g-select__item"
+                        class="select__item"
                         :class="{ active: id === props.modelValue }"
                         @click="onItemClick(id)">
                         {{ title }}
@@ -83,14 +83,14 @@ const toggle = () => {
 </script>
 
 <style lang="scss">
-.g-select {
+.select {
     position: relative;
 
     &.error {
-        .g-select__wrapper {
+        .select__wrapper {
             border-color: $red;
         }
-        .g-select__error {
+        .select__error {
             opacity: 1;
             visibility: visible;
         }
@@ -204,7 +204,7 @@ const toggle = () => {
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
 
-        .g-select__header {
+        .select__header {
             &:before {
                 transform: rotate(-40deg);
             }
@@ -212,14 +212,14 @@ const toggle = () => {
                 transform: rotate(40deg);
             }
         }
-        .g-select__body {
+        .select__body {
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
     }
     &.error {
         // border-color: $red-error;
-        .g-select__header {
+        .select__header {
             &:before,
             &:after {
                 // background-color: $red-error;
