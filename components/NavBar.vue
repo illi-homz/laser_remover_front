@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar">
+    <div class="navbar" id="navbar">
         <nuxt-link to="#" class="navbar__logo-link" @click="close">
             <nuxt-icon name="logo" class="navbar__logo" filled />
         </nuxt-link>

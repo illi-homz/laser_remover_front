@@ -20,14 +20,6 @@
                     v-for="({ id, video }, idx) in props.items"
                     :key="id"
                     class="gallery-video-feedbacks__slide">
-                    <div
-                        v-if="idx !== activeIndex"
-                        class="gallery-video-feedbacks__slide-action"
-                        @click="playVideo(idx)">
-                        <div class="btn btn--outlined btn--play gallery-video-feedbacks__slide-action-btn">
-                            <nuxt-icon name="play" class="gallery-video-feedbacks__play" filled />
-                        </div>
-                    </div>
                     <video
                         ref="videos"
                         :muted="idx !== activeIndex"
@@ -38,6 +30,14 @@
                         class="gallery-video-feedbacks__video-item">
                         <source :src="MEDIAFILES_URL + video" type="video/mp4" />
                     </video>
+                    <div
+                        v-if="idx !== activeIndex"
+                        class="gallery-video-feedbacks__slide-action"
+                        @click="playVideo(idx)">
+                        <div class="btn btn--outlined btn--play gallery-video-feedbacks__slide-action-btn">
+                            <nuxt-icon name="play" class="gallery-video-feedbacks__play" filled />
+                        </div>
+                    </div>
                 </SwiperSlide>
             </template>
         </Gallery>
