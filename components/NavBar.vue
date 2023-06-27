@@ -11,7 +11,7 @@
                 </li>
             </ul>
 
-            <nuxt-link class="btn btn--medium navbar__btn" to="#contacts">Записаться</nuxt-link>
+            <nuxt-link class="btn btn--medium navbar__btn" to="#contacts" @click="close">Записаться</nuxt-link>
         </div>
 
         <div class="navbar__burger" :class="{ opened: inOpened }" @click="toggleMenu">
@@ -48,8 +48,8 @@ const toggleMenu = () => {
 };
 
 const links = computed(() => {
-    return props.links || []
-})
+    return props.links || [];
+});
 </script>
 
 <style lang="scss">
@@ -218,7 +218,6 @@ const links = computed(() => {
         flex-direction: column;
         justify-content: center;
 
-
         &::before,
         &::after {
             content: "";
@@ -227,7 +226,7 @@ const links = computed(() => {
             height: 2px;
             width: 100%;
             background-color: $white;
-            transition: all .2s ease;
+            transition: all 0.2s ease;
         }
 
         &::before {
