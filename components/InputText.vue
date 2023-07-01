@@ -43,7 +43,6 @@ const onKeyDown = (e: any) => {
         }
         .input-text__error {
             opacity: 1;
-            visibility: visible;
         }
     }
     
@@ -62,7 +61,6 @@ const onKeyDown = (e: any) => {
         color: $red;
         margin-bottom: 2px;
         opacity: 0;
-        visibility: hidden;
         transition: all .3s ease;
     }
 
