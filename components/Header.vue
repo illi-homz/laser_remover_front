@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+    <div class="header" id="header">
         <!-- header - hello man -->
         <div class="container header__container">
             <div class="header__content">

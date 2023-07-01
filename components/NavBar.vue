@@ -1,6 +1,6 @@
 <template>
     <div class="navbar" id="navbar">
-        <nuxt-link to="#" class="navbar__logo-link" @click="close">
+        <nuxt-link :to="mainLogoLink" class="navbar__logo-link" @click="close">
             <nuxt-icon name="logo" class="navbar__logo" filled />
         </nuxt-link>
 
@@ -29,6 +29,7 @@ const inOpened = ref(false);
 
 const props = defineProps<{
     links?: LinkType[];
+    mainLogoLink?: string;
 }>();
 
 const open = () => {
@@ -49,6 +50,9 @@ const toggleMenu = () => {
 
 const links = computed(() => {
     return props.links || [];
+});
+const mainLogoLink = computed(() => {
+    return props.mainLogoLink || '/';
 });
 </script>
 

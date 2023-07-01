@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <div class="main__navbar">
-            <NavBar class="container" :links="links" />
+            <NavBar class="container" :links="links" main-logo-link="#header" />
         </div>
         <div class="main__header-wrapper">
             <Header />
