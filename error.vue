@@ -2,7 +2,8 @@
 <template>
     <div class="error-page">
         <div class="error-page__wrapper">
-            <div class="error-page__text">Увы но страницы по адресу {{ route.fullPath }} не существует</div>
+            <div class="error-page__404">404</div>
+            <div class="error-page__text">Увы, но страница {{ route.path }} не найдена</div>
             <nuxt-link to="/" class="error-page__link">на главную</nuxt-link>
         </div>
     </div>
@@ -27,6 +28,15 @@ const route = useRoute();
         align-items: center;
         margin: 0 auto;
         max-width: 768px;
+    }
+
+    &__404 {
+        color: $white;
+        font-size: 100px;
+        line-height: 90px;
+        text-align: center;
+        font-family: $palladio;
+        margin-bottom: 24px;
     }
 
     &__text {

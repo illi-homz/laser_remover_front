@@ -7,10 +7,10 @@
                     class="questions__question-wrap"
                     @click="toggleAnswers(idx)"
                     :class="{ active: activeIndex === idx }">
-                    <div class="questions__question">{{ question }}</div>
+                    <p class="questions__question">{{ question }}</p>
                     <div class="questions__indicator" />
                 </div>
-                <div ref="answersNodes" class="questions__answer">{{ answer }}</div>
+                <p ref="answersNodes" class="questions__answer">{{ answer }}</p>
             </li>
         </ul>
     </div>
@@ -132,8 +132,8 @@ const toggleAnswers = (idx: number) => {
         padding-right: 76px;
         font-family: $mont;
         font-weight: 600;
-        font-size: 16px;
-        line-height: 23px;
+        font-size: 20px;
+        line-height: 30px;
         display: none;
     }
 }
