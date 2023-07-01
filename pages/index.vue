@@ -35,7 +35,10 @@ const description =
 
 useHead({
     title: "Михаил Кисиев | Лазерное удаление татуировок",
-    meta: [{ name: "description", content: description }],
+    meta: [
+        { name: "description", content: description },
+        { name: "keywords", content: "удаление тату татуировки татуаж татуажа лазер лазерное владикавказ" },
+    ],
 });
 
 const {
