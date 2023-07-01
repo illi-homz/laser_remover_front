@@ -1,9 +1,9 @@
 !
 <template>
-    <div class="error">
-        <div class="error__wrapper">
-            <div class="error__text">Увы но страницы по адресу {{ route.fullPath }} не существует</div>
-            <nuxt-link to="/" class="error__link">на главную</nuxt-link>
+    <div class="error-page">
+        <div class="error-page__wrapper">
+            <div class="error-page__text">Увы но страницы по адресу {{ route.fullPath }} не существует</div>
+            <nuxt-link to="/" class="error-page__link">на главную</nuxt-link>
         </div>
     </div>
 </template>
@@ -13,7 +13,7 @@ const route = useRoute();
 </script>
 
 <style lang="scss">
-.error {
+.error-page {
     width: 100vw;
     height: 100vh;
     background: linear-gradient(99.51deg, #23252c 18.79%, #000000 100%);
