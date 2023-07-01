@@ -14,7 +14,7 @@
                 </div>
                 <div class="contacts__contacts-address">
                     <nuxt-icon name="location" class="contacts__location" filled />
-                    <a class="contacts__contacts-text" href="google.ru" target="_blank">
+                    <a class="contacts__contacts-text" :href="ADDRESS_URL" target="_blank">
                         Владикавказ,{{ "\n" }}Первомайская 34
                     </a>
                 </div>
@@ -67,6 +67,7 @@ import avatarMiniImage from "@/assets/img/avatar-mini.png";
 import { sendFormToTelegram } from "@/api/sendFormToTelegram";
 import { ContactsFormDataType, ServiceType } from "~/types";
 
+const ADDRESS_URL = 'https://yandex.ru/maps/33/vladikavkaz/house/pervomayskaya_ulitsa_34a/YE0YcAJpSkYGQFppfXxzc31ibA==/?ll=44.659397%2C43.022057&z=20.6'
 const props = defineProps<{
     services?: ServiceType[];
 }>();

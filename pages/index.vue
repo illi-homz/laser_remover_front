@@ -82,14 +82,12 @@ const links = computed(() => {
     &__navbar {
         background: linear-gradient(98.79deg, #23252c 30.69%, #000000 100%);
 
-        @include desktop {
-            position: fixed;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            z-index: 100;
-        }
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        z-index: 100;
     }
 
     .navbar {
