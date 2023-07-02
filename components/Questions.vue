@@ -107,6 +107,7 @@ const toggleAnswers = (idx: number) => {
         background-color: $white;
         position: relative;
         border-radius: 2px;
+        margin-left: 24px;
 
         &::before,
         &::after {
