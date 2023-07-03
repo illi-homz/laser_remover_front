@@ -240,3 +240,15 @@
     font-style: italic;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'Viaoda Libre';
+    src: url('~/assets/fonts/ViaodaLibre/ViaodaLibre-Regular.eot');
+    src: url('~/assets/fonts/ViaodaLibre/ViaodaLibre-Regular.eot?#iefix') format('embedded-opentype'),
+        url('~/assets/fonts/ViaodaLibre/ViaodaLibre-Regular.woff2') format('woff2'),
+        url('~/assets/fonts/ViaodaLibre/ViaodaLibre-Regular.woff') format('woff'),
+        url('~/assets/fonts/ViaodaLibre/ViaodaLibre-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

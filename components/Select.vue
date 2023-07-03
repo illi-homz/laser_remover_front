@@ -1,16 +1,17 @@
 <template>
     <div class="select" :class="{ opened: isOpen, error: !!props.error }">
-        <div class="select__error">{{ props.error || '-' }}</div>
+        <div class="select__error">{{ props.error || "-" }}</div>
         <div class="select__wrapper">
             <div class="select__header" @click="toggle()">
-                <span class="select__label">{{ title }}</span>
+                <span v-if="title" class="select__text select__label">{{ title }}</span>
+                <span v-else class="select__text select__placeholder">{{ placeholder || "Сделайте выбор" }}</span>
             </div>
             <div ref="optionsNode" class="select__body scroll" :class="{ opened: isOpen }">
                 <ul class="select__items no-scrollbar">
                     <li
                         v-for="{ id, title } in items"
                         :key="id"
-                        class="select__item"
+                        class="select__text select__item"
                         :class="{ active: id === props.modelValue }"
                         @click="onItemClick(id)">
                         {{ title }}
@@ -27,14 +28,16 @@ const props = defineProps<{
         [key: string | number]: string;
     };
     modelValue?: string | number;
+    placeholder?: string;
     error?: string;
 }>();
 
 const emit = defineEmits(["update:modelValue"]);
 
+const placeholder = computed(() => props.placeholder);
 const title = computed(() => {
     const value = props.modelValue || -1;
-    return props.items?.[value] || "Выбери услугу";
+    return props.items?.[value];
 });
 
 type ItemType = {
@@ -99,7 +102,7 @@ const toggle = () => {
     &__wrapper {
         border: 1px solid $grayMedium;
         border-radius: 2px;
-        transition: all .3s ease;
+        transition: all 0.3s ease;
     }
 
     &__error {
@@ -111,7 +114,7 @@ const toggle = () => {
         margin-bottom: 2px;
         opacity: 0;
         visibility: hidden;
-        transition: all .3s ease;
+        transition: all 0.3s ease;
     }
 
     &__header {
@@ -146,7 +149,18 @@ const toggle = () => {
         }
     }
 
+    &__text {
+        font-family: $mont;
+        font-size: 16px;
+        line-height: 23px;
+    }
+
+    &__placeholder {
+        color: $grayMedium;
+    }
+
     &__label {
+        color: $black;
     }
 
     &__body {

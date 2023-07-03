@@ -50,7 +50,7 @@
                     </div>
                     <Select
                         v-if="services"
-                        placeholder="авивпива"
+                        placeholder="Выбери услугу"
                         :items="services"
                         v-model="service"
                         :error="errors.service" />

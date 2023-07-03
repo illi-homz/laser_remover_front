@@ -1,16 +1,26 @@
 !
 <template>
     <div class="error-page">
-        <div class="error-page__wrapper">
-            <div class="error-page__404">404</div>
-            <div class="error-page__text">Увы, но страница {{ route.path }} не найдена</div>
-            <nuxt-link to="/" class="error-page__link">на главную</nuxt-link>
+        <div class="container">
+            <NavBar :links="links" main-logo-link="/" />
+
+            <div class="error-page__wrapper">
+                <div class="error-page__404">404</div>
+                <div class="error-page__text">Возможно этой страницы уже не существует</div>
+                <nuxt-link to="/" class="error-page__link btn">На главную</nuxt-link>
+            </div>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-const route = useRoute();
+const links = [
+    { id: 0, title: "Обо мне", url: "/#aboutme" },
+    { id: 1, title: "Галерея", url: "/#gallery-works" },
+    { id: 2, title: "Отзывы", url: "/#gallery-text-feedbacks" },
+    { id: 3, title: "Частые вопросы", url: "/#questions" },
+    { id: 4, title: "Контакты", url: "/#contacts" },
+];
 </script>
 
 <style lang="scss">
@@ -18,46 +28,41 @@ const route = useRoute();
     width: 100vw;
     height: 100vh;
     background: linear-gradient(99.51deg, #23252c 18.79%, #000000 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+    .container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
 
     &__wrapper {
+        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 0 auto;
-        max-width: 768px;
+        justify-content: center;
     }
 
     &__404 {
         color: $white;
-        font-size: 100px;
-        line-height: 90px;
+        font-size: 68px;
+        line-height: 69px;
+        font-weight: bold;
         text-align: center;
         font-family: $palladio;
-        margin-bottom: 24px;
+        margin-bottom: 14px;
     }
 
     &__text {
         color: $white;
-        font-size: 42px;
-        line-height: 50px;
+        font-size: 24px;
+        line-height: 32px;
         text-align: center;
-        font-family: $palladio;
-        margin-bottom: 24px;
+        font-family: $mont;
+        margin-bottom: 32px;
     }
 
     &__link {
-        color: $white;
-        font-size: 16px;
-        line-height: 22px;
-        transition: all .2s ease;
-        font-family: $mont;
-
-        &:hover {
-            color: $grayMedium;
-        }
     }
 }
 </style>
