@@ -2,7 +2,7 @@
 <template>
     <div class="error-page">
         <div class="container">
-            <NavBar :links="links" main-logo-link="/" />
+            <NavBar :links="links" main-logo-link="/" :prefetch="true" />
 
             <div class="error-page__wrapper">
                 <div class="error-page__404">404</div>

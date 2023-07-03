@@ -4,6 +4,18 @@ export type FilterBtnsItemType = {
     value: string;
 }
 
+export type IdexPageDataType = {
+    allServices: ServiceType[];
+    allIllustrations: {
+        items: IllustrationType[];
+        types: IllustrationTypeType[];
+    };
+    allFeedbacksText: AllFeedbacksTextType[];
+    allFeedbacksVideo: AllFeedbacksVideoType[];
+    allQuestions: QuestionType[];
+
+}
+
 export type QuestionType = {
     id: number | string;
     question: string;

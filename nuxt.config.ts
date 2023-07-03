@@ -5,6 +5,7 @@ export default defineNuxtConfig({
         apiUrl: "",
         public: {
             apiBase: "/api",
+            gqlUrl: "/graphql",
         },
     },
     app: {
@@ -37,7 +38,8 @@ export default defineNuxtConfig({
             title: "Михаил Кисиев",
         },
     },
-    modules: ["nuxt-swiper", "nuxt-graphql-client", "nuxt-icons"],
+    components: true,
+    modules: ["nuxt-swiper", "nuxt-icons"],
     swiper: {},
     imports: {
         dirs: [],
@@ -60,6 +62,7 @@ export default defineNuxtConfig({
                 "/admin": "http://127.0.0.1:8000",
                 "/staticfiles": "http://127.0.0.1:8000",
                 "/mediafiles": "http://127.0.0.1:8000",
+                "/graphql": "http://127.0.0.1:8000",
             },
         },
     },

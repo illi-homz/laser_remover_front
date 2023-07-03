@@ -4,6 +4,12 @@
     </div>
 </template>
 
+<script lang="ts" setup>
+defineNuxtLink({
+    trailingSlash: 'append',
+});
+</script>
+
 <style lang="scss">
 .default-layout {
     min-height: 100vh;

@@ -23,39 +23,49 @@
 import {
     AllFeedbacksTextType,
     AllFeedbacksVideoType,
+    IdexPageDataType,
     IllustrationType,
     IllustrationTypeType,
     LinkType,
     QuestionType,
     ServiceType,
 } from "~/types";
+import { indexGql } from "@/api";
 
 const description =
     "Получите профессиональное и безопасное удаление татуировок лазером во Владикавказе от опытного мастера. Удаление татуировки лазером - эффективный способ избавиться от нежелательной татуировки. Наш мастер также предоставляет услуги по обучению этой процедуре. Свяжитесь с нами прямо сейчас для консультации и записи на процедуру или обучение.";
 
 useHead({
     title: "Михаил Кисиев | Лазерное удаление татуировок",
-    meta: [
-        { name: "description", content: description },
-    ],
+    meta: [{ name: "description", content: description }],
 });
 
 const {
-    data: { value: initData },
-} = await useAsyncGql("initData");
+    data: initData,
+    pending,
+    error,
+    refresh,
+} = await useAsyncData("getMainData", (ctx): Promise<IdexPageDataType> => {
+    return indexGql.getMainData(ctx) as Promise<IdexPageDataType>;
+});
+
+onMounted(() => {
+    refresh();
+    console.log("refresh");
+});
 
 //@ts-ignore
-const illustrations = computed((): IllustrationType[] | undefined => initData?.allIllustrations?.items);
+const illustrations = computed((): IllustrationType[] | undefined => initData.value?.allIllustrations?.items);
 //@ts-ignore
-const types = computed((): IllustrationTypeType[] | undefined => initData?.allIllustrations?.types);
+const types = computed((): IllustrationTypeType[] | undefined => initData.value?.allIllustrations?.types);
 //@ts-ignore
-const feedbacksText = computed((): AllFeedbacksTextType[] | undefined => initData?.allFeedbacksText);
+const feedbacksText = computed((): AllFeedbacksTextType[] | undefined => initData.value?.allFeedbacksText);
 //@ts-ignore
-const feedbacksVideo = computed((): AllFeedbacksVideoType[] | undefined => initData?.allFeedbacksVideo);
+const feedbacksVideo = computed((): AllFeedbacksVideoType[] | undefined => initData.value?.allFeedbacksVideo);
 //@ts-ignore
-const questions = computed((): QuestionType[] | undefined => initData?.allQuestions);
+const questions = computed((): QuestionType[] | undefined => initData.value?.allQuestions);
 //@ts-ignore
-const services = computed((): ServiceType[] | undefined => initData?.allServices);
+const services = computed((): ServiceType[] | undefined => initData.value?.allServices);
 
 const links = computed(() => {
     const lks: LinkType[] = [{ id: 0, title: "Обо мне", url: "#aboutme" }];
@@ -97,14 +107,11 @@ const links = computed(() => {
 
     .navbar {
         width: 100%;
-        // margin-bottom: 45px;
 
         @include tablet {
-            // margin-bottom: 45px;
         }
 
         @include desktop {
-            // position: absolute;
         }
     }
 
