@@ -4,7 +4,7 @@ export type FilterBtnsItemType = {
     value: string;
 }
 
-export type IdexPageDataType = {
+export type IndexPageDataType = {
     allServices: ServiceType[];
     allIllustrations: {
         items: IllustrationType[];

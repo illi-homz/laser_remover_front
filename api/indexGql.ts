@@ -1,7 +1,7 @@
 import { NuxtApp } from "nuxt/app";
-import { IdexPageDataType } from "~/types";
+import { IndexPageDataType } from "~/types";
 
-export const getMainData = (ctx: NuxtApp | undefined): Promise<IdexPageDataType> | false => {
+export const getMainData = (ctx: NuxtApp | undefined): Promise<IndexPageDataType> | false => {
     const isHydrating = ctx?.isHydrating
     const gqlUrl = ctx?.$config.public.gqlUrl
     const url = isHydrating ? gqlUrl : 'http://localhost:8000' + gqlUrl;
@@ -13,7 +13,7 @@ export const getMainData = (ctx: NuxtApp | undefined): Promise<IdexPageDataType>
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ query }),
+            body: JSON.stringify({ query: indexQuery }),
         })
             .then((response) => response?.json())
             .then((json) => {
@@ -24,7 +24,7 @@ export const getMainData = (ctx: NuxtApp | undefined): Promise<IdexPageDataType>
     );
 };
 
-const query = `
+export const indexQuery = `
 query initData {
     allServices {
         id

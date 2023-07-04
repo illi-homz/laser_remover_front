@@ -6,6 +6,7 @@ export default defineNuxtConfig({
         public: {
             apiBase: "/api",
             gqlUrl: "/graphql",
+            apiHost: "",
         },
     },
     app: {

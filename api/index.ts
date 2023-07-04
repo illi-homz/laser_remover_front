@@ -1,5 +1,2 @@
-import * as indexGql from './indexGql'
-
-export {
-    indexGql
-}
+export * as indexGql from './indexGql'
+export * as useIndexData from './useIndexData'

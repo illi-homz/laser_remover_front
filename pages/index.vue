@@ -23,14 +23,13 @@
 import {
     AllFeedbacksTextType,
     AllFeedbacksVideoType,
-    IdexPageDataType,
     IllustrationType,
     IllustrationTypeType,
     LinkType,
     QuestionType,
     ServiceType,
 } from "~/types";
-import { indexGql } from "@/api";
+import { useIndexData } from "@/api/useIndexData";
 
 const description =
     "Получите профессиональное и безопасное удаление татуировок лазером во Владикавказе от опытного мастера. Удаление татуировки лазером - эффективный способ избавиться от нежелательной татуировки. Наш мастер также предоставляет услуги по обучению этой процедуре. Свяжитесь с нами прямо сейчас для консультации и записи на процедуру или обучение.";
@@ -40,20 +39,10 @@ useHead({
     meta: [{ name: "description", content: description }],
 });
 
-const {
-    data: initData,
-    pending,
-    error,
-    refresh,
-} = await useAsyncData("getMainData", (ctx): Promise<IdexPageDataType> => {
-    return indexGql.getMainData(ctx) as Promise<IdexPageDataType>;
-});
+const { data: fetchData } = await useIndexData();
 
-onMounted(() => {
-    refresh();
-    console.log("refresh");
-});
-
+//@ts-ignore
+const initData = computed(() => fetchData.value?.data);
 //@ts-ignore
 const illustrations = computed((): IllustrationType[] | undefined => initData.value?.allIllustrations?.items);
 //@ts-ignore
