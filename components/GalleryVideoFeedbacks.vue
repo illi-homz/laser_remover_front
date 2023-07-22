@@ -23,13 +23,13 @@
                     <video
                         ref="videos"
                         :muted="idx !== activeIndex"
-                        loop
                         playsinline
                         preload="auto"
                         @click="playVideo(idx)"
                         class="gallery-video-feedbacks__video-item">
                         <source :src="MEDIAFILES_URL + video" type="video/mp4" />
                     </video>
+                    <!-- loop -->
                     <div
                         v-if="idx !== activeIndex"
                         class="gallery-video-feedbacks__slide-action"
@@ -56,12 +56,12 @@ const activeIndex = ref<number | null>(null);
 
 const playVideo = (idx: number) => {
     if (activeIndex.value !== null) {
-        const prevVideo = videos.value?.[activeIndex.value]
+        const prevVideo = videos.value?.[activeIndex.value];
         prevVideo?.pause();
     }
 
-    const currentVideo = videos.value?.[idx]
-    
+    const currentVideo = videos.value?.[idx];
+
     if (activeIndex.value === idx) {
         activeIndex.value = null;
         currentVideo?.pause();
@@ -83,7 +83,7 @@ const playVideo = (idx: number) => {
             padding-right: 24px;
         }
     }
-    
+
     &__slide {
         // width: 280px;
         height: 412px;
@@ -119,8 +119,8 @@ const playVideo = (idx: number) => {
                 border-color: $accent;
 
                 svg path {
-                fill: $white;
-            }
+                    fill: $white;
+                }
             }
         }
     }
