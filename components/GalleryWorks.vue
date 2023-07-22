@@ -27,9 +27,9 @@
                 <SwiperSlide v-for="{ id, img, title, count } in filteredSlides" :key="id" class="gallery-works__slide">
                     <div class="gallery-works__slide-img" :style="`background-image: url(${MEDIAFILES_URL + img});`" />
                     <div class="gallery-works__slide-info">
-                        <h3 class="gallery-works__slide-text">#{{ title }}</h3>
+                        <h3 class="gallery-works__slide-text">{{ title }}</h3>
                         <div class="gallery-works__slide-text">
-                            #{{ count }} {{ declOfNum(count, ["сеанс", "сеанса", "сеансов"]) }}
+                            {{ count }} {{ declOfNum(count, ["сеанс", "сеанса", "сеансов"]) }}
                         </div>
                     </div>
                 </SwiperSlide>
