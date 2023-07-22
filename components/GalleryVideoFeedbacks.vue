@@ -25,6 +25,7 @@
                         :muted="idx !== activeIndex"
                         playsinline
                         preload="auto"
+                        @ended="playVideo(idx)"
                         @click="playVideo(idx)"
                         class="gallery-video-feedbacks__video-item">
                         <source :src="MEDIAFILES_URL + video" type="video/mp4" />
