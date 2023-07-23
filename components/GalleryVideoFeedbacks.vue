@@ -91,6 +91,7 @@ const playVideo = (idx: number) => {
         position: relative;
         border: 5px solid $white;
         border-radius: 2px;
+        overflow: hidden;
     }
 
     &__video-item {
