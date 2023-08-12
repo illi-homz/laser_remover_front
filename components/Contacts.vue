@@ -10,7 +10,7 @@
                 <div class="contacts__contacts-text contacts__contacts-skill">Топ-мастер</div>
                 <div class="contacts__contacts-links">
                     <a class="contacts__contacts-text" href="mailto:mi.kisiev@mail.com">mi.kisiev@mail.com</a>
-                    <a class="contacts__contacts-text" href="tel:+7 900 000 00 00">+7 900 000 00 00</a>
+                    <a class="contacts__contacts-text" :href="`tel:${TELPHONE}`">{{ TELPHONE }}</a>
                 </div>
                 <div class="contacts__contacts-address">
                     <nuxt-icon name="location" class="contacts__location" filled />
@@ -19,13 +19,13 @@
                     </a>
                 </div>
                 <div class="contacts__contacts-socials">
-                    <a href="#">
+                    <a :href="VK_URL" target="_blank">
                         <nuxt-icon name="vk" class="contacts__contacts-social-item" filled />
                     </a>
-                    <a href="#">
+                    <a :href="INSTA_URL" target="_blank">
                         <nuxt-icon name="instagram" class="contacts__contacts-social-item" filled />
                     </a>
-                    <a href="#">
+                    <a :href="TG_URL" target="_blank">
                         <nuxt-icon name="tg" class="contacts__contacts-social-item" filled />
                     </a>
                 </div>
@@ -67,6 +67,10 @@ import avatarMiniImage from "@/assets/img/avatar-mini.png";
 import { sendFormToTelegram } from "@/api/sendFormToTelegram";
 import { ContactsFormDataType, ServiceType } from "~/types";
 
+const TELPHONE = '+7 962 746 8214'
+const VK_URL = 'https://vk.com'
+const INSTA_URL = 'https://instagramm.com'
+const TG_URL = 'https://t.me/mikhail_kisiev'
 const ADDRESS_URL = 'https://yandex.ru/maps/33/vladikavkaz/house/pervomayskaya_ulitsa_34a/YE0YcAJpSkYGQFppfXxzc31ibA==/?ll=44.659397%2C43.022057&z=20.6'
 const props = defineProps<{
     services?: ServiceType[];
