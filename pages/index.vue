@@ -1,9 +1,13 @@
 <template>
     <div class="main">
-        <div class="main__navbar">
-            <NavBar class="container" :links="links" main-logo-link="#header" />
-        </div>
         <div class="main__header-wrapper">
+            <div class="main__navbar" :style="`right: ${navbarRight}px`">
+                <NavBar
+                    class="container"
+                    :links="links"
+                    main-logo-link="#header"
+                />
+            </div>
             <Header />
         </div>
         <AboutMe class="container" />
@@ -22,7 +26,17 @@
             :items="feedbacksVideo"
         />
         <Questions v-if="questions?.length" :questions="questions" />
-        <Contacts :services="services" />
+        <Contacts
+            :services="services"
+            @submit="isConfirmVisible = !isConfirmVisible"
+        />
+
+        <PopupConfirm
+            :visible="isConfirmVisible"
+            @cancel="onModalClose"
+            @close="onModalClose"
+            @open="onModalOpen"
+        />
     </div>
 </template>
 
@@ -37,6 +51,7 @@ import {
     ServiceType,
 } from "~/types";
 import { useIndexData } from "@/api/useIndexData";
+import { VNodeRef } from "nuxt/dist/app/compat/capi";
 
 const description =
     "Получите профессиональное и безопасное удаление татуировок лазером во Владикавказе от опытного мастера. Удаление татуировки лазером - эффективный способ избавиться от нежелательной татуировки. Наш мастер также предоставляет услуги по обучению этой процедуре. Свяжитесь с нами прямо сейчас для консультации и записи на процедуру или обучение.";
@@ -46,7 +61,19 @@ useHead({
     meta: [{ name: "description", content: description }],
 });
 
+const isConfirmVisible = ref(false);
+const navbarRight = ref(0);
+
 const { data: fetchData } = await useIndexData();
+
+const onModalOpen = (right: number) => {
+    console.log('onModalOpen', right)
+    navbarRight.value = right;
+};
+const onModalClose = () => {
+    isConfirmVisible.value = false;
+    navbarRight.value = 0;
+};
 
 //@ts-ignore
 const initData = computed(() => fetchData.value?.data);
@@ -107,14 +134,17 @@ const links = computed(() => {
     }
 
     &__navbar {
+        margin-bottom: 40px;
         background: linear-gradient(98.79deg, #23252c 30.69%, #000000 100%);
 
-        position: fixed;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        z-index: 100;
+        @include desktop {
+            margin-bottom: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
     }
 
     .navbar {

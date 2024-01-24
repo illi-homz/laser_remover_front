@@ -18,9 +18,11 @@
                     Специалист по удалению татуировок и татуажа
                 </div>
                 <div class="contacts__contacts-links">
-                    <a class="contacts__contacts-text" :href="`mailto:${EMAIL}`">{{
-                        EMAIL
-                    }}</a>
+                    <a
+                        class="contacts__contacts-text"
+                        :href="`mailto:${EMAIL}`"
+                        >{{ EMAIL }}</a
+                    >
                     <a
                         class="contacts__contacts-text"
                         :href="`tel:${TELPHONE}`"
@@ -38,7 +40,8 @@
                         :href="ADDRESS_URL"
                         target="_blank"
                     >
-                        Владикавказ,{{ "\n" }}Первомайская 34<br>Клиника Аллы Битаровой
+                        Владикавказ,{{ "\n" }}Первомайская 34<br />Клиника Аллы
+                        Битаровой
                     </a>
                 </div>
                 <div class="contacts__contacts-socials">
@@ -63,6 +66,13 @@
                             filled
                         />
                     </a>
+                    <!-- <a :href="TG_URL" target="_blank">
+                        <nuxt-icon
+                            name="whatsapp"
+                            class="contacts__contacts-social-item"
+                            filled
+                        />
+                    </a> -->
                 </div>
             </div>
 
@@ -132,6 +142,8 @@ const ADDRESS_URL =
 const props = defineProps<{
     services?: ServiceType[];
 }>();
+
+const emit = defineEmits(["submit"]);
 
 const name = ref("");
 const lastname = ref("");
@@ -207,9 +219,8 @@ const submit = async () => {
     errors.value = {};
 
     const response = await sendFormToTelegram(formData.value);
-    console.log("response", response);
-    const json = await response.json();
-    console.log("json", json);
+    // const json = await response.json();
+    emit("submit");
     clean();
 };
 </script>

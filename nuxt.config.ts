@@ -41,6 +41,12 @@ export default defineNuxtConfig({
     },
     components: true,
     modules: ["nuxt-swiper", "nuxt-icons"],
+    colorMode: {
+        classSuffix: "",
+        preference: "light",
+        fallback: "light",
+        dataValue: "light",
+    },
     swiper: {},
     imports: {
         dirs: [],
