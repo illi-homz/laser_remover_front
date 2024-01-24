@@ -1,46 +1,98 @@
 <template>
     <div class="contacts" id="contacts">
-        <div class="container block-title contacts__block-title">Запишись на бесплатную консультацию</div>
+        <div class="container block-title contacts__block-title">
+            Запишись на бесплатную консультацию
+        </div>
         <div class="container contacts__content">
             <div class="contacts__contacts">
                 <div class="contacts__contacts-img">
-                    <img :src="avatarMiniImage" alt="Михаил Кисиев" width="92" height="92" />
+                    <img
+                        :src="avatarMiniImage"
+                        alt="Михаил Кисиев"
+                        width="92"
+                        height="92"
+                    />
                 </div>
                 <div class="contacts__contacts-name">Михаил Кисиев</div>
-                <div class="contacts__contacts-text contacts__contacts-skill">Топ-мастер</div>
+                <div class="contacts__contacts-text contacts__contacts-skill">
+                    Специалист по удалению татуировок и татуажа
+                </div>
                 <div class="contacts__contacts-links">
-                    <a class="contacts__contacts-text" href="mailto:mi.kisiev@mail.com">mi.kisiev@mail.com</a>
-                    <a class="contacts__contacts-text" :href="`tel:${TELPHONE}`">{{ TELPHONE }}</a>
+                    <a class="contacts__contacts-text" :href="`mailto:${EMAIL}`">{{
+                        EMAIL
+                    }}</a>
+                    <a
+                        class="contacts__contacts-text"
+                        :href="`tel:${TELPHONE}`"
+                        >{{ TELPHONE }}</a
+                    >
                 </div>
                 <div class="contacts__contacts-address">
-                    <nuxt-icon name="location" class="contacts__location" filled />
-                    <a class="contacts__contacts-text" :href="ADDRESS_URL" target="_blank">
-                        Владикавказ,{{ "\n" }}Первомайская 34
+                    <nuxt-icon
+                        name="location"
+                        class="contacts__location"
+                        filled
+                    />
+                    <a
+                        class="contacts__contacts-text"
+                        :href="ADDRESS_URL"
+                        target="_blank"
+                    >
+                        Владикавказ,{{ "\n" }}Первомайская 34<br>Клиника Аллы Битаровой
                     </a>
                 </div>
                 <div class="contacts__contacts-socials">
                     <a :href="VK_URL" target="_blank">
-                        <nuxt-icon name="vk" class="contacts__contacts-social-item" filled />
+                        <nuxt-icon
+                            name="vk"
+                            class="contacts__contacts-social-item"
+                            filled
+                        />
                     </a>
                     <a :href="INSTA_URL" target="_blank">
-                        <nuxt-icon name="instagram" class="contacts__contacts-social-item" filled />
+                        <nuxt-icon
+                            name="instagram"
+                            class="contacts__contacts-social-item"
+                            filled
+                        />
                     </a>
                     <a :href="TG_URL" target="_blank">
-                        <nuxt-icon name="tg" class="contacts__contacts-social-item" filled />
+                        <nuxt-icon
+                            name="tg"
+                            class="contacts__contacts-social-item"
+                            filled
+                        />
                     </a>
                 </div>
             </div>
 
             <div class="contacts__form">
                 <div class="contacts__form-wrap">
-                    <div class="contacts__form-title">Оставляй заявку, мы свяжемся с тобой для уточнения деталей</div>
-                    <div class="double">
-                        <InputText v-model="name" :error="errors.name" placeholder="Имя" />
-                        <InputText v-model="lastname" :error="errors.lastname" placeholder="Фамилия" />
+                    <div class="contacts__form-title">
+                        Оставляй заявку, мы свяжемся с тобой для уточнения
+                        деталей
                     </div>
-                    <InputPhone v-model="phone" :error="errors.phone" class="mb18" />
+                    <div class="double">
+                        <InputText
+                            v-model="name"
+                            :error="errors.name"
+                            placeholder="Имя"
+                        />
+                        <InputText
+                            v-model="lastname"
+                            :error="errors.lastname"
+                            placeholder="Фамилия"
+                        />
+                    </div>
+                    <InputPhone
+                        v-model="phone"
+                        :error="errors.phone"
+                        class="mb18"
+                    />
                     <div class="mb18">
-                        <div class="contacts__contacts-text dark contacts__form-messagers-title">
+                        <div
+                            class="contacts__contacts-text dark contacts__form-messagers-title"
+                        >
                             Что предпочитаешь?
                         </div>
                         <div class="double">
@@ -53,9 +105,12 @@
                         placeholder="Выбери услугу"
                         :items="services"
                         v-model="service"
-                        :error="errors.service" />
+                        :error="errors.service"
+                    />
                 </div>
-                <div class="btn btn--black" @click="submit">Отправить заявку</div>
+                <div class="btn btn--black" @click="submit">
+                    Отправить заявку
+                </div>
             </div>
             <div class="contacts__banner" />
         </div>
@@ -67,11 +122,13 @@ import avatarMiniImage from "@/assets/img/avatar-mini.png";
 import { sendFormToTelegram } from "@/api/sendFormToTelegram";
 import { ContactsFormDataType, ServiceType } from "~/types";
 
-const TELPHONE = '+7 962 746 8214'
-const VK_URL = 'https://vk.com'
-const INSTA_URL = 'https://instagramm.com'
-const TG_URL = 'https://t.me/mikhail_kisiev'
-const ADDRESS_URL = 'https://yandex.ru/maps/33/vladikavkaz/house/pervomayskaya_ulitsa_34a/YE0YcAJpSkYGQFppfXxzc31ibA==/?ll=44.659397%2C43.022057&z=20.6'
+const TELPHONE = "+7 (962) 746-82-14";
+const VK_URL = "https://vk.com/mikhailkisiev";
+const EMAIL = "misha132001@mail.ru";
+const INSTA_URL = "https://instagramm.com/mikhail_kisiev";
+const TG_URL = "https://t.me/mikhail_kisiev";
+const ADDRESS_URL =
+    "https://yandex.ru/maps/33/vladikavkaz/house/pervomayskaya_ulitsa_34a/YE0YcAJpSkYGQFppfXxzc31ibA==/?ll=44.659397%2C43.022057&z=20.6";
 const props = defineProps<{
     services?: ServiceType[];
 }>();
@@ -95,12 +152,15 @@ const clean = () => {
 };
 
 const services = computed(() => {
-    return props.services?.reduce<{ [key: string]: string }>((acc, { id, title }: ServiceType) => {
-        return {
-            ...acc,
-            [id]: title,
-        };
-    }, {});
+    return props.services?.reduce<{ [key: string]: string }>(
+        (acc, { id, title }: ServiceType) => {
+            return {
+                ...acc,
+                [id]: title,
+            };
+        },
+        {}
+    );
 });
 
 const formData = computed((): ContactsFormDataType => {
@@ -128,7 +188,10 @@ const required = (message = "Обязательное поле") => {
 const validation = {
     name: [required("Укажите ваше имя")],
     lastname: [],
-    phone: [required("Укажите телефон для связи"), minLength(phonePattern.length - 1, "Некорректный номер")],
+    phone: [
+        required("Укажите телефон для связи"),
+        minLength(phonePattern.length - 1, "Некорректный номер"),
+    ],
     service: [required("Выберите услугу")],
     messegers: [],
 };

@@ -7,9 +7,9 @@
                 <div class="header__info">
                     Без ожогов и шрамов
                     <div class="dot" />
-                    Без боли
-                    <div class="dot" />
                     Бесплатная консультация
+                    <div class="dot" />
+                    Владикавказ
                 </div>
             </div>
             <img src="@/assets/img/avatar.webp" class="header__avatar" />

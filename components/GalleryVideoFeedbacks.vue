@@ -1,7 +1,7 @@
 <template>
     <div class="gallery-video-feedbacks" id="gallery-text-feedbacks">
         <Gallery
-            title="Видео-отзывы"
+            title="ПРОЦЕСС УДАЛЕНИЯ"
             :slides-per-view="1"
             :space-between="10"
             :breakpoints="{

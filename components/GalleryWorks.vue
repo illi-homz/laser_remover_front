@@ -74,6 +74,11 @@ const filteredSlides = computed(() => {
         height: 443px;
         display: flex;
         flex-direction: column;
+        transition: all .3s ease;
+
+        &:hover {
+            transform: scale(1.08);
+        }
     }
 
     &__slide-img {
