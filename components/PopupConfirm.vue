@@ -1,9 +1,9 @@
 <template>
     <Popup
         :visible="isVisible"
-        @open="open"
-        @close="close"
-        @cancel="cancel"
+        @onOpen="onOpen"
+        @onClose="onClose"
+        @onCancel="onCancel"
         class="popup-confirm"
     >
         <div class="popup-confirm__card" @click.stop>
@@ -11,7 +11,7 @@
                 name="close"
                 class="popup-confirm__close-btn"
                 filled
-                @click="close"
+                @click="onClose"
             />
             <img src="@/assets/img/confirm.png" class="popup-confirm__img" />
             <div class="popup-confirm__title">Заявка отправлена!</div>
@@ -25,17 +25,17 @@ const props = defineProps<{
     visible: boolean;
 }>();
 
-const emit = defineEmits(["open", "cancel", "close"]);
+const emit = defineEmits(["onOpen", "onCancel", "onClose"]);
 const isVisible = computed(() => props.visible);
 
-const open = (right: number) => {
-    emit("open", right);
+const onOpen = (right: number) => {
+    emit("onOpen", right);
 };
-const cancel = () => {
-    emit("cancel");
+const onCancel = () => {
+    emit("onCancel");
 };
-const close = () => {
-    emit("close");
+const onClose = () => {
+    emit("onClose");
 };
 </script>
 
@@ -54,6 +54,7 @@ const close = () => {
         top: 10px;
         right: 10px;
         transition: transform 0.2s ease;
+        cursor: pointer;
 
         svg {
             width: 32px;

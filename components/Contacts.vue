@@ -108,6 +108,7 @@
                         <div class="double">
                             <Checkbox v-model="isWhatsApp" title="WhatsApp" />
                             <Checkbox v-model="isTelegram" title="Telegram" />
+                            <Checkbox v-model="isCall" title="Звонком" />
                         </div>
                     </div>
                     <Select
@@ -151,6 +152,7 @@ const phone = ref("");
 const service = ref("");
 const isWhatsApp = ref(false);
 const isTelegram = ref(false);
+const isCall = ref(false);
 const errors = ref<{ [key: string]: string }>({});
 
 const clean = () => {
@@ -160,6 +162,7 @@ const clean = () => {
     service.value = "";
     isWhatsApp.value = false;
     isTelegram.value = false;
+    isCall.value = false;
     errors.value = {};
 };
 
@@ -179,10 +182,12 @@ const formData = computed((): ContactsFormDataType => {
     const serviceId = service.value;
     const whatsapp = isWhatsApp.value && "WhatsApp";
     const telegram = isTelegram.value && "Telegram";
+    const call = isCall.value && "Звонком";
     const messegers: string[] = [];
 
     whatsapp && messegers.push(whatsapp);
     telegram && messegers.push(telegram);
+    call && messegers.push(call);
 
     return {
         name: name.value,

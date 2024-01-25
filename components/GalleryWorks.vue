@@ -14,22 +14,37 @@
                     slidesPerGroup: 3,
                     spaceBetween: 20,
                 },
-            }">
+            }"
+        >
             <template v-slot:filters>
                 <FilterBtnsList
                     v-if="!!props.types"
                     :items="props.types"
                     @onItemClick="onFilterClick"
-                    class="no-scrollbar gallery-works__filter-btns" />
+                    class="no-scrollbar gallery-works__filter-btns"
+                />
             </template>
 
             <template v-slot:slides>
-                <SwiperSlide v-for="{ id, img, title, count } in filteredSlides" :key="id" class="gallery-works__slide">
-                    <div class="gallery-works__slide-img" :style="`background-image: url(${MEDIAFILES_URL + img});`" />
+                <SwiperSlide
+                    v-for="{ id, img, title, count } in filteredSlides"
+                    :key="id"
+                    class="gallery-works__slide"
+                >
+                    <div
+                        class="gallery-works__slide-img"
+                        :style="`background-image: url(${
+                            MEDIAFILES_URL + img
+                        });`"
+                        @click="onImgClick(MEDIAFILES_URL + img)"
+                    />
                     <div class="gallery-works__slide-info">
                         <h3 class="gallery-works__slide-text">{{ title }}</h3>
                         <div class="gallery-works__slide-text">
-                            {{ count }} {{ declOfNum(count, ["сеанс", "сеанса", "сеансов"]) }}
+                            {{ count }}
+                            {{
+                                declOfNum(count, ["сеанс", "сеанса", "сеансов"])
+                            }}
                         </div>
                     </div>
                 </SwiperSlide>
@@ -42,6 +57,12 @@
 import { IllustrationTypeType, IllustrationType } from "~/types";
 import { MEDIAFILES_URL } from "~/utils/variables";
 import { declOfNum } from "~/utils";
+
+const emit = defineEmits(["onImgClick"]);
+
+const onImgClick = (u: string) => {
+    emit('onImgClick', u)
+}
 
 const props = defineProps<{
     illustrations?: IllustrationType[];
@@ -59,7 +80,7 @@ const filteredSlides = computed(() => {
         if (!activeFilter.value) return true;
 
         return activeFilter.value === type;
-    })
+    });
 });
 </script>
 
@@ -69,12 +90,12 @@ const filteredSlides = computed(() => {
         padding-left: 0;
         padding-right: 0;
     }
-    
+
     &__slide {
         height: 443px;
         display: flex;
         flex-direction: column;
-        transition: all .3s ease;
+        transition: all 0.3s ease;
 
         &:hover {
             transform: scale(1.08);

@@ -3,7 +3,7 @@
         class="popup"
         :class="{ visible: isVisible }"
         :style="`padding-right: ${paddingRight}px`"
-        @click="emit('cancel')"
+        @click="emit('onCancel')"
     >
         <slot />
     </div>
@@ -14,14 +14,14 @@ const props = defineProps<{
     visible: boolean;
 }>();
 
-const emit = defineEmits(["open", "cancel", "close"]);
+const emit = defineEmits(["onOpen", "onCancel", "onClose"]);
 const isVisible = computed(() => props.visible);
 const paddingRight = ref(0);
 
 watch(isVisible, (value, oldValue) => {
     const body = document.getElementsByTagName("body")[0];
 
-    if (isVisible.value) {
+    if (value) {
         const windowWidth = window.innerWidth;
         const bodyWidth = body.offsetWidth;
         const paddRight = Math.abs(windowWidth - bodyWidth);
@@ -29,13 +29,13 @@ watch(isVisible, (value, oldValue) => {
         paddingRight.value = paddRight;
         body.classList.add("lock");
 
-        emit("open", paddRight);
+        emit("onOpen", paddRight);
     } else {
         body.style.paddingRight = "0";
         paddingRight.value = 0;
         body.classList.remove("lock");
 
-        emit("close");
+        emit("onClose");
     }
 });
 </script>

@@ -16,6 +16,7 @@
             class="main__gallery-works"
             :types="types"
             :illustrations="illustrations"
+            @on-img-click="onGalleryWorkImgClick"
         />
         <GalleryTextFeedbacks
             v-if="feedbacksText?.length"
@@ -26,16 +27,19 @@
             :items="feedbacksVideo"
         />
         <Questions v-if="questions?.length" :questions="questions" />
-        <Contacts
-            :services="services"
-            @submit="isConfirmVisible = !isConfirmVisible"
-        />
+        <Contacts :services="services" @submit="onSupportFromSubmit" />
 
         <PopupConfirm
             :visible="isConfirmVisible"
-            @cancel="onModalClose"
-            @close="onModalClose"
-            @open="onModalOpen"
+            @on-cancel="onConfirmModalClose"
+            @on-close="onConfirmModalClose"
+            @on-open="onModalOpen"
+        />
+        <PopupImgView
+            ref="popupImgViewRef"
+            @on-open="onModalOpen"
+            @on-cancel="onModalClose"
+            @on-close="onModalClose"
         />
     </div>
 </template>
@@ -51,7 +55,6 @@ import {
     ServiceType,
 } from "~/types";
 import { useIndexData } from "@/api/useIndexData";
-import { VNodeRef } from "nuxt/dist/app/compat/capi";
 
 const description =
     "Получите профессиональное и безопасное удаление татуировок лазером во Владикавказе от опытного мастера. Удаление татуировки лазером - эффективный способ избавиться от нежелательной татуировки. Наш мастер также предоставляет услуги по обучению этой процедуре. Свяжитесь с нами прямо сейчас для консультации и записи на процедуру или обучение.";
@@ -63,16 +66,25 @@ useHead({
 
 const isConfirmVisible = ref(false);
 const navbarRight = ref(0);
+const popupImgViewRef = ref<{ show(v: string): void } | null>(null);
 
 const { data: fetchData } = await useIndexData();
 
 const onModalOpen = (right: number) => {
-    console.log('onModalOpen', right)
     navbarRight.value = right;
 };
 const onModalClose = () => {
-    isConfirmVisible.value = false;
     navbarRight.value = 0;
+};
+const onConfirmModalClose = () => {
+    onModalClose();
+    isConfirmVisible.value = false;
+};
+const onSupportFromSubmit = () => {
+    isConfirmVisible.value = !isConfirmVisible.value;
+};
+const onGalleryWorkImgClick = (url: string) => {
+    popupImgViewRef.value?.show(url);
 };
 
 //@ts-ignore
