@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { ymScript } from "./utils/yaMetrica";
+
 export default defineNuxtConfig({
     runtimeConfig: {
         apiSecret: "123",
@@ -11,6 +13,14 @@ export default defineNuxtConfig({
     },
     app: {
         head: {
+            script: [
+                {
+                    children: ymScript,
+                    tagPosition: "head",
+                    tagPriority: "critical",
+                    type: "text/javascript",
+                },
+            ],
             meta: [
                 { name: "description", content: "any description" },
                 { name: "keywords", content: "удаление тату татуировки татуаж татуажа лазер лазерное владикавказ" },
