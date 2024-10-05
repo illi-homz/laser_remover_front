@@ -8,7 +8,7 @@ export default defineNuxtConfig({
         public: {
             apiBase: "/api",
             gqlUrl: "/graphql",
-            apiHost: "",
+            apiHost: "http://127.0.0.1:8000",
         },
     },
     app: {

@@ -3,8 +3,9 @@ import { IndexPageDataType } from "~/types";
 
 export const getMainData = (ctx: NuxtApp | undefined): Promise<IndexPageDataType> | false => {
     const isHydrating = ctx?.isHydrating
-    const gqlUrl = ctx?.$config.public.gqlUrl
-    const url = isHydrating ? gqlUrl : 'http://localhost:8000' + gqlUrl;
+    const gqlUrl = ctx?.$config.public.gqlUrl || ''
+    const apiHost = ctx?.$config.public.apiHost || ''
+    const url = isHydrating ? gqlUrl : apiHost + gqlUrl;
 
     return (
         !!url &&

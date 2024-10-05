@@ -12,9 +12,10 @@ jobs:
       - uses: fifsky/ssh-action@master
         with:
           command: |
-            source ~/.nvm/nvm.sh
-            cd ~/projects/tatu_by_laser_remover/front
+            cd ~/projects/laser_remover_front
             git checkout .; git clean -fd; git pull; npm run build; killall node
+            yarn
+            yarn build
           host: ${{ secrets.HOST }}
           user: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
