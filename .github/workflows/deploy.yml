@@ -12,7 +12,7 @@ jobs:
       - uses: fifsky/ssh-action@master
         with:
           command: |
-            echo "hello1"
+            echo "hello1!"
             cd ~/projects/laser_remover_front
             git checkout .; git clean -fd; git pull; npm run build; killall node
             yarn
