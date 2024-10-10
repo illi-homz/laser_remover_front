@@ -105,7 +105,7 @@
                         >
                             Что предпочитаешь?
                         </div>
-                        <div class="double">
+                        <div class="double contacts__social">
                             <Checkbox v-model="isWhatsApp" title="WhatsApp" />
                             <Checkbox v-model="isTelegram" title="Telegram" />
                             <Checkbox v-model="isCall" title="Звонком" />
@@ -250,7 +250,7 @@ const submit = async () => {
     .double {
         width: 100%;
         display: flex;
-        column-gap: 12px;
+        gap: 12px;
 
         & > div {
             flex: 1;
@@ -360,6 +360,7 @@ const submit = async () => {
 
     &__contacts-skill {
         margin-bottom: 24px;
+        text-align: center;
     }
 
     &__contacts-links {
@@ -475,6 +476,10 @@ const submit = async () => {
 
     &__form-messagers-title {
         margin-bottom: 8px;
+    }
+
+    &__social {
+        flex-wrap: wrap;
     }
 }
 </style>
